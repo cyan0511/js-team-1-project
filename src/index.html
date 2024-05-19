@@ -6,6 +6,11 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Weather App - Team 1</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Raleway:wght@800&family=Roboto:ital,wght@0,400;0,500;0,900;1,700&display=swap"
+        rel="stylesheet">
     <link rel='stylesheet' type='text/css' media='screen' href='./css/styles.css'>
     <script src='./js/main.js'></script>
 </head>
@@ -14,7 +19,6 @@
     <header class="header">
         <div class="container">
             <nav class="nav">
-
             </nav>
         </div>
     </header>
@@ -23,6 +27,35 @@
             <div class="container">
                 <h1>Javascript Team 1 Rocks!</h1>
             </div>
+        </section>
+
+        <section>
+            <div class="date-card">
+                <div class="date-day">
+                    <h1 class="date">8<sup>th</sup></h1>
+                    <h1 class="day">Sat</h1>
+                </div>
+                
+                <div class="other-info">
+                    <p class="month">February</p>
+                    <svg width="32" height="32" class="sunrise">
+                        <use href="./images/vector1.svg#line1"></use>
+                    </svg>
+                    <p id="current-time">00:00:00</p>
+                    <svg width="32" height="32">
+                        <use href="images/sunrise&set.svg#sunrise"></use>
+                    </svg>
+                    <p>6:30</p>
+                    <svg width="32" height="32">
+                        <use href="./images/vector1.svg#line1"></use>
+                    </svg>
+                    <svg width="32" height="32">
+                        <use href="images/sunrise&set.svg#sunset"></use>
+                    </svg>
+                    <p>18:30</p>
+                </div>
+            </div>
+            
         </section>
     </main>
     <footer class="footer">
