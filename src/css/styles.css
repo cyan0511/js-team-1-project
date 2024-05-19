@@ -10,3 +10,116 @@
   /* page font-style */
   --lato: 'Lato', sans-serif;
 }
+
+body {
+  background-image: url('../images/bg.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box1 h2,
+.box1 h3,
+.box1 ul,
+.box1 li,
+.box1 p {
+  margin: 0;
+  padding: 0;
+}
+
+.box1 {
+  width: 1060px;
+  height: 556px;
+  padding: 40px;
+  border-radius: 34px;
+  background: rgba(16, 33, 54, 0.8);
+  box-shadow: 0px 8px 43px 0px rgba(16, 33, 54, 0.6);
+}
+
+.box1 li {
+  list-style-type: none;
+}
+
+.box1 .more-info-list {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  list-style-type: none;
+}
+
+.box1 .more-info-item {
+  padding: 15px 19px;
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  width: 120px;
+  height: 218px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.box1 .more-info-item img {
+  margin-bottom: 10px;
+}
+
+.box1 .time,
+.box1 .temperature,
+.box1 .measurement-list {
+  font-family: var(--lato);
+}
+
+.box1 .time {
+  color: var(--white);
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 10px;
+  opacity: 0.6;
+}
+
+.box1 .temperature {
+  color: var(--orange);
+  text-align: center;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 10px;
+}
+
+.box1 .measurement-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.box1 .more-info-item .weather-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.box1 .measurement-item .barometer,
+.box1 .measurement-item .humidity,
+.box1 .measurement-item .wind {
+  color: var(--white);
+  font-family: var(--lato);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  opacity: 0.6;
+}
+
+.box1 .measurement-item .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+}
