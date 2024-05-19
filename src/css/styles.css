@@ -10,3 +10,9 @@
   /* page font-style */
   --lato: 'Lato', sans-serif;
 }
+
+body {
+  background-image: url(../images/background.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
