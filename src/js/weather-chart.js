@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
         'May 16, 2024',
         'May 17, 2024',
         'May 18, 2024',
-        'May 19, 2024',
+        '',
       ],
       datasets: datasets,
     },
@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
             font: {
               size: 14,
             },
+            boxWidth: 15,
           },
         },
         tooltip: {
@@ -92,6 +93,16 @@ document.addEventListener('DOMContentLoaded', function () {
           },
           grid: {
             color: 'rgba(255, 255, 255, .15)',
+          },
+          title: {
+            display: true,
+            text: 'Value of Indicators',
+            color: '#ffffff54',
+            font: {
+              size: 14,
+
+              lineHeight: 3,
+            },
           },
         },
       },
