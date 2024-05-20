@@ -3,10 +3,10 @@ const maxRecentSearches = 5;
 
 async function searchCity(cityName) {
     try {
-        const response = await fetch(`https://pixabay.com/api/?key=${apiKey}&q=${cityName}&image_type=photo`);
+        const response = await fetch(`https://pixabay.com/api/?key=${apiKey}&q=${cityName}&image_type=all`);
         const data = await response.json();
         if (data.hits.length > 0) {
-            const imageUrl = data.hits[0].webformatURL;
+            const imageUrl = data.hits[0].largeImageURL; 
             displayCityImage(imageUrl);
             addRecentSearch(cityName);
         } else {
@@ -16,6 +16,7 @@ async function searchCity(cityName) {
         console.error('Error fetching images:', error);
     }
 }
+
 
 function displayCityImage(imageUrl) {
     const cityImageElement = document.getElementById('city-image');
@@ -43,6 +44,7 @@ function addRecentSearch(cityName) {
     displayRecentSearches();
 }
 
+// Function to display recent searches
 function displayRecentSearches() {
     const recentSearchesContainer = document.getElementById('recent-searches');
     recentSearchesContainer.innerHTML = '';
@@ -52,6 +54,7 @@ function displayRecentSearches() {
         searchItem.className = 'recent-search-item';
         searchItem.textContent = cityName;
 
+        // Add remove icon
         const removeIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         removeIcon.setAttribute('width', '16');
         removeIcon.setAttribute('height', '16');
@@ -66,7 +69,7 @@ function displayRecentSearches() {
         recentSearchesContainer.appendChild(searchItem);
     });
 }
-
+// Function to remove recent search
 function removeRecentSearch(cityName) {
     let recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
     recentSearches = recentSearches.filter(item => item !== cityName);

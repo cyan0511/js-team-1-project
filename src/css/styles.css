@@ -307,8 +307,9 @@ p {
   height: 100vh;
   object-fit: cover;
   z-index: -1;
-  image-rendering: auto;
+  image-rendering: pixelated;
 }
+
 
 .input-geolocation {
   left: 26px;
