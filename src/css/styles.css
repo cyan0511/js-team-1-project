@@ -276,6 +276,40 @@ p {
   font-weight: 400;
 }
 
+/*recent search*/
+
+.recent-searches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.recent-search-item {
+  background-color: #ddd;
+  border-radius: 15px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.recent-search-item svg {
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+#city-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  image-rendering: auto;
+}
+
 .input-geolocation {
   left: 26px;
 }

@@ -8,9 +8,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Raleway:wght@800&family=Roboto:ital,wght@0,400;0,500;0,900;1,700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700&family=Raleway:wght@800&family=Roboto:ital,wght@0,400;0,500;0,900;1,700&display=swap" rel="stylesheet">
     <link rel='stylesheet' type='text/css' media='screen' href='./css/styles.css'>
 </head>
 
@@ -24,10 +22,8 @@
     <main>
         <section>
             <div class="container">
-                <div class="sqr1">
-                </div>
-                <div class="sqr2">
-                </div>
+                <div class="sqr1"></div>
+                <div class="sqr2"></div>
 
                 <div class="input-container">
                     <form class="search__form" id="search-form">
@@ -41,6 +37,7 @@
                             </svg>
                         </button>
                     </form>
+                    <div id="recent-searches" class="recent-searches"></div>
                 </div>
 
                 <div class="today-view">
@@ -49,12 +46,8 @@
                             <svg width="35" height="35" class="cloudy">
                                 <use href="./images/icons.svg#cloudy"></use>
                             </svg>
-                            <div class="city">
-                                Manila, PH
-                            </div>
-                            <div class="current-temp">
-                                45
-                            </div>
+                            <div class="city">Manila, PH</div>
+                            <div class="current-temp">45</div>
                             <div class="min-max-temp">
                                 <p class="info-item">
                                     min
@@ -74,14 +67,11 @@
                             <button class="today" type="button">TODAY</button>
                             <button id="btn-five-days" class="five-days button-active" type="button">5 DAYS</button>
                         </div>
-
-
                     </div>
 
                     <div class="date-card">
                         <div class="date-day">
                             <h1 class="date">8<sup>th</sup> Sat</h1>
-
                             <div class="other-info">
                                 <p class="month">February</p>
                                 <svg width="16" height="22" class="sunrise">
@@ -101,18 +91,13 @@
                                 <p>18:30</p>
                             </div>
                         </div>
-
-
                     </div>
 
                     <div class="quote-container">
                         <svg class="icon-quote" width="35" height="32">
                             <use href="./images/icons.svg#quote"></use>
                         </svg>
-                        <div class="quote">Who cares about the clouds when we're together? Just sing a song and bring
-                            the
-                            sunny
-                            weather.</div>
+                        <div class="quote">Who cares about the clouds when we're together? Just sing a song and bring the sunny weather.</div>
                         <div class="quote-author">Dale Evans</div>
                     </div>
                 </div>
@@ -124,12 +109,13 @@
                     </div>
                     <include src="./partials/weather-chart.html"></include>
                 </div>
+
+                <img id="city-image" alt="City Image" style="display: none;">
             </div>
         </section>
     </main>
-    <footer class="footer">
-
-    </footer>
+    <footer class="footer"></footer>
+    <script type="module" src="./js/recentSearches.js"></script>
     <script type="module" src="./js/main.js"></script>
 </body>
 
