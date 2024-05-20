@@ -31,6 +31,11 @@ p {
   margin: 0;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
 .date-card {
   background-color: rgba(16, 33, 54, 0.6);
 
@@ -174,11 +179,12 @@ p {
   width: 126px;
   height: 27px;
   padding: 0px 12px;
-  cursor: pointer;
+  cursor: not-allowed;
 }
 
 .button-active {
   background-color: var(--white);
+  cursor: pointer;
 }
 
 .quote-container {
@@ -219,7 +225,7 @@ p {
   position: relative;
   display: flex;
   justify-content: center;
-  top: 80px;
+  padding-top: 80px;
 }
 
 .btn-favourite {
@@ -323,4 +329,30 @@ p {
 .sqr2 {
   top: -150;
   left: 1300;
+}
+
+.five-day-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.five-day-view .buttons-toggle {
+  width: 70vw;
+  justify-content: end;
+  margin: 40px 0 40px 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }
