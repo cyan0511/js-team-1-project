@@ -368,6 +368,7 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 auto;
 }
 
 .weather-wrap {
@@ -431,7 +432,7 @@ ul {
   margin: 10px;
 }
 
-.box::after {
+/* .box::after {
     content: "";
     opacity: .2;
     width: 1px;
@@ -441,7 +442,7 @@ ul {
     top: 27%;
     left: 17.2%;
     height: 46px;
-}
+} */
 
 
 .text-min, .text-max {
