@@ -1,0 +1,116 @@
+<header class="header">
+    <div class="container">
+        <nav class="nav">
+        </nav>
+    </div>
+</header>
+<main>
+    <section>
+        <div class="container">
+            <div class="sqr1">
+            </div>
+            <div class="sqr2">
+            </div>
+
+            <div class="input-container">
+                <form class="search__form" id="search-form">
+                    <svg width="24" height="24" class="input-geolocation">
+                        <use href="./images/icons.svg#location"></use>
+                    </svg>
+                    <input id="search-input" value="" name="city" placeholder="Enter the city">
+                    <button class="btn-favourite" type="button">
+                        <svg width="24" height="24" class="fovourite-icon">
+                            <use href="./images/icons.svg#star"></use>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+
+            <div class="today-view">
+                <div class="weather-info-container">
+                    <div class="weather-info">
+                        <svg width="35" height="35" class="cloudy">
+                            <use href="./images/icons.svg#cloudy"></use>
+                        </svg>
+                        <div class="city">
+                            Manila, PH
+                        </div>
+                        <div class="current-temp">
+                            45
+                        </div>
+                        <div class="min-max-temp">
+                            <p class="info-item">
+                                min
+                                <span class="min-temp">20°</span>
+                            </p>
+                            <svg width="3" height="45">
+                                <use href="./images/icons.svg#line1"></use>
+                            </svg>
+                            <p class="info-item">
+                                max
+                                <span class="max-temp">48°</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="buttons-toggle">
+                        <button class="today" type="button">TODAY</button>
+                        <button id="btn-five-days" class="five-days button-active" type="button">5 DAYS</button>
+                    </div>
+
+
+                </div>
+
+                <div class="date-card">
+                    <div class="date-day">
+                        <h1 class="date">8<sup>th</sup> Sat</h1>
+
+                        <div class="other-info">
+                            <p class="month">February</p>
+                            <svg width="16" height="22" class="sunrise">
+                                <use href="./images/icons.svg#line1"></use>
+                            </svg>
+                            <p id="current-time">00:00:00</p>
+                            <svg width="16" height="22">
+                                <use href="images/icons.svg#sunrise"></use>
+                            </svg>
+                            <p>6:30</p>
+                            <svg width="16" height="22">
+                                <use href="./images/icons.svg#line1"></use>
+                            </svg>
+                            <svg width="16" height="22">
+                                <use href="images/icons.svg#sunset"></use>
+                            </svg>
+                            <p>18:30</p>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="quote-container">
+                    <svg class="icon-quote" width="35" height="32">
+                        <use href="./images/icons.svg#quote"></use>
+                    </svg>
+                    <div class="quote">Who cares about the clouds when we're together? Just sing a song and bring
+                        the
+                        sunny
+                        weather.</div>
+                    <div class="quote-author">Dale Evans</div>
+                </div>
+            </div>
+
+            <div class="five-day-view visually-hidden">
+                <div class="buttons-toggle">
+                    <button id="btn-today" class="today button-active" type="button">TODAY</button>
+                    <button class="five-days" type="button">5 DAYS</button>
+                </div>
+                <include src="./partials/fivedays.html"></include>
+                <include src="./partials/weather-chart.html"></include>
+            </div>
+        </div>
+    </section>
+</main>
+<footer class="footer">
+
+</footer>
