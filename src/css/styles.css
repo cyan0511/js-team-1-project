@@ -16,7 +16,7 @@ body {
   background-color: #f0f0f0;
   margin: 0;
   height: 100vh;
-
+  text-decoration-line: none;
   background: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0) 70%,
@@ -26,7 +26,7 @@ body {
   background-size: cover;
 }
 
-h1,
+h1, h2, h3,h4, h5, h6,
 p {
   margin: 0;
 }
@@ -38,7 +38,6 @@ p {
 
 .date-card {
   background-color: rgba(16, 33, 54, 0.6);
-
   border-radius: 0px 34px 0px 0px;
   width: 630;
   height: 278px;
@@ -356,3 +355,169 @@ p {
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
+
+
+/* Fivedays CSS */
+
+.fivedays-moreinfo {
+    /* display: flex; */
+    /* justify-content: center; */
+    width: 1060px;
+    /* height: 308px; */
+    padding: 40px 80px;
+    border-radius: 34px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), rgba(16, 33, 54, 0.80);
+    box-shadow: 0px 8px 43px 0px rgba(16, 33, 54, 0.60);
+}
+
+ul {
+  list-style-type: none;
+}
+
+.fivedays-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: row;
+  column-gap: 60px;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.card {
+  width: 120px;
+  height: 228px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.day {
+  color: #FFF;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.72px;
+  opacity: 0.55;
+}
+
+.fivedays-date {
+  color: #FFF;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.fivedays-icon {
+  margin: 20px 42px 35px 43px;
+
+}
+
+.temp-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+.separator {
+  display: flex;
+  border-right: 1px solid #fff;
+  height: 46px;
+  opacity: 0.3;
+}
+
+.text-min,
+.text-max {
+  color: #FFF;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+  opacity: 0.55;
+}
+
+.num-min,
+.num-max {
+  color: #FF6B09;
+  text-align: center;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.fiveday-more-info {
+  display: flex;
+  justify-content: center;
+  color: #FFF;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration-line: underline;
+  opacity: 0.3;
+  background-color: initial;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+/* More Info CSS */
+
+.more-info-list {
+  display: flex;
+  padding: 0;
+  column-gap: 10px;
+  justify-content: center;
+}
+
+.more-info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 120px;
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  row-gap: 10px;
+  padding: 16px 0;
+}
+
+.measurement-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  align-items: flex-start;
+  align-content: center;
+  justify-content: center;
+}
+
+.measurement-item{
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.barometer, .humidity, .wind {
+  color: #FFF;
+  opacity: 0.54;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.hidden {
+  display: none;
+}
+
