@@ -1,82 +1,70 @@
 const apiKey = '43704076-e4399805efcc0ad689cbb211a';
-const maxRecentSearches = 5;
+const defaultImageUrl = 'https://via.placeholder.com/800x600?text=No+Image+Available'; // Default image URL
+
+function getRandomImageUrl(hits) {
+    const randomIndex = Math.floor(Math.random() * hits.length);
+    return hits[randomIndex].largeImageURL;
+}
 
 async function searchCity(cityName) {
     try {
-        const response = await fetch(`https://pixabay.com/api/?key=${apiKey}&q=${cityName}&image_type=all`);
+        const url = `https://pixabay.com/api/?key=${apiKey}&q=${encodeURIComponent(cityName)}&category=places&image_type=photo&order=popular&safesearch=true`;
+        console.log(`Fetching images for ${cityName} with URL: ${url}`);
+        
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        
         const data = await response.json();
-        if (data.hits.length > 0) {
-            const imageUrl = data.hits[0].largeImageURL; 
+        console.log(`API Response: `, data);
+        
+        if (data.hits && data.hits.length > 0) {
+            const imageUrl = getRandomImageUrl(data.hits);
+            console.log(`Selected random image URL: ${imageUrl}`);
             displayCityImage(imageUrl);
-            addRecentSearch(cityName);
         } else {
-            console.log('No images found for the city');
+            console.log(`No images found for ${cityName}`);
+            displayCityImage(defaultImageUrl);
+            displayNoResultsMessage(cityName);
         }
     } catch (error) {
         console.error('Error fetching images:', error);
+        displayCityImage(defaultImageUrl);
+        displayErrorMessage(cityName);
     }
 }
 
-
 function displayCityImage(imageUrl) {
     const cityImageElement = document.getElementById('city-image');
-    cityImageElement.src = imageUrl;
-    cityImageElement.style.display = 'block';
+    if (cityImageElement) {
+        cityImageElement.src = imageUrl;
+        cityImageElement.style.display = 'block';
+        cityImageElement.style.objectFit = 'cover';
+        cityImageElement.style.width = '100%';
+        cityImageElement.style.height = '100%';
+        console.log(`Displayed image: ${imageUrl}`);
+    } else {
+        console.error('City image element not found');
+    }
+}
+
+function displayNoResultsMessage(cityName) {
+    console.log(`No images found for ${cityName}`);
+}
+
+function displayErrorMessage(cityName) {
+    console.log(`Error fetching images for ${cityName}`);
 }
 
 document.getElementById('search-form').addEventListener('submit', function(event) {
     event.preventDefault();
-    console.log('Form submitted'); // Debugging line
-    const cityName = document.getElementById('search-input').value;
-    searchCity(cityName);
+    const cityName = document.getElementById('search-input').value.trim();
+    if (cityName) {
+        searchCity(cityName);
+    } else {
+        alert('Please enter a city name');
+    }
 });
 
-function addRecentSearch(cityName) {
-    let recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
-    if (recentSearches.includes(cityName)) {
-        recentSearches = recentSearches.filter(item => item !== cityName);
-    }
-    recentSearches.unshift(cityName);
-    if (recentSearches.length > maxRecentSearches) {
-        recentSearches.pop();
-    }
-    localStorage.setItem('recentSearches', JSON.stringify(recentSearches));
-    displayRecentSearches();
-}
-
-// Function to display recent searches
-function displayRecentSearches() {
-    const recentSearchesContainer = document.getElementById('recent-searches');
-    recentSearchesContainer.innerHTML = '';
-    const recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
-    recentSearches.forEach(cityName => {
-        const searchItem = document.createElement('div');
-        searchItem.className = 'recent-search-item';
-        searchItem.textContent = cityName;
-
-        // Add remove icon
-        const removeIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        removeIcon.setAttribute('width', '16');
-        removeIcon.setAttribute('height', '16');
-        removeIcon.innerHTML = '<use href="./images/icons.svg#close"></use>';
-        removeIcon.addEventListener('click', (event) => {
-            event.stopPropagation();
-            removeRecentSearch(cityName);
-        });
-
-        searchItem.appendChild(removeIcon);
-        searchItem.addEventListener('click', () => searchCity(cityName));
-        recentSearchesContainer.appendChild(searchItem);
-    });
-}
-// Function to remove recent search
-function removeRecentSearch(cityName) {
-    let recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
-    recentSearches = recentSearches.filter(item => item !== cityName);
-    localStorage.setItem('recentSearches', JSON.stringify(recentSearches));
-    displayRecentSearches();
-}
-
-window.onload = function() {
-    displayRecentSearches();
-};
+window.onload = function() {};

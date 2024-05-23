@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,12 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700&family=Raleway:wght@800&family=Roboto:ital,wght@0,400;0,500;0,900;1,700&display=swap" rel="stylesheet">
     <link rel='stylesheet' type='text/css' media='screen' href='./css/styles.css'>
 </head>
-
 <body>
     <header class="header">
         <div class="container">
-            <nav class="nav">
-            </nav>
+            <nav class="nav"></nav>
         </div>
     </header>
     <main>
@@ -24,7 +21,6 @@
             <div class="container">
                 <div class="sqr1"></div>
                 <div class="sqr2"></div>
-
                 <div class="input-container">
                     <form class="search__form" id="search-form">
                         <svg width="24" height="24" class="input-geolocation">
@@ -39,7 +35,6 @@
                     </form>
                     <div id="recent-searches" class="recent-searches"></div>
                 </div>
-
                 <div class="today-view">
                     <div class="weather-info-container">
                         <div class="weather-info">
@@ -49,26 +44,18 @@
                             <div class="city">Manila, PH</div>
                             <div class="current-temp">45</div>
                             <div class="min-max-temp">
-                                <p class="info-item">
-                                    min
-                                    <span class="min-temp">20°</span>
-                                </p>
+                                <p class="info-item">min <span class="min-temp">20°</span></p>
                                 <svg width="3" height="45">
                                     <use href="./images/icons.svg#line1"></use>
                                 </svg>
-                                <p class="info-item">
-                                    max
-                                    <span class="max-temp">48°</span>
-                                </p>
+                                <p class="info-item">max <span class="max-temp">48°</span></p>
                             </div>
                         </div>
-
                         <div class="buttons-toggle">
                             <button class="today" type="button">TODAY</button>
                             <button id="btn-five-days" class="five-days button-active" type="button">5 DAYS</button>
                         </div>
                     </div>
-
                     <div class="date-card">
                         <div class="date-day">
                             <h1 class="date">8<sup>th</sup> Sat</h1>
@@ -92,7 +79,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="quote-container">
                         <svg class="icon-quote" width="35" height="32">
                             <use href="./images/icons.svg#quote"></use>
@@ -101,7 +87,6 @@
                         <div class="quote-author">Dale Evans</div>
                     </div>
                 </div>
-
                 <div class="five-day-view visually-hidden">
                     <div class="buttons-toggle">
                         <button id="btn-today" class="today button-active" type="button">TODAY</button>
@@ -109,7 +94,6 @@
                     </div>
                     <include src="./partials/weather-chart.html"></include>
                 </div>
-
                 <img id="city-image" alt="City Image" style="display: none;">
             </div>
         </section>
@@ -118,5 +102,4 @@
     <script type="module" src="./js/recentSearches.js"></script>
     <script type="module" src="./js/main.js"></script>
 </body>
-
 </html>
