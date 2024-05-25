@@ -26,6 +26,9 @@
       </div>
     </header>
     <main>
+      <div class="loader-container visually-hidden">
+        <div class="loader"></div>
+      </div>
       <section>
         <div class="container">
           <div class="sqr1"></div>
@@ -51,9 +54,14 @@
           </div>
 
           <div class="today-view">
-            <div class="weather-info-container">
+            <div class="weather-info-container visually-hidden">
               <div class="weather-info">
-                <img class="weather-icon" alt="Weather Icon" width="35" height="35" />
+                <img
+                  class="weather-icon"
+                  alt="Weather Icon"
+                  width="35"
+                  height="35"
+                />
                 <!-- <svg width="35" height="35" class="cloudy">
                   <use href="images/icons.svg#default"></use>
                 </svg> -->
@@ -122,7 +130,6 @@
               <div class="quote-author">Dale Evans</div>
             </div>
           </div>
-
           <div class="five-day-view visually-hidden">
             <div class="buttons-toggle">
               <button id="btn-today" class="today button-active" type="button">
