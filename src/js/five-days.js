@@ -15,6 +15,17 @@ const searchFormEl = document.getElementById('search-form');
 // Main function for five days view and more info
 async function handleFiveDaysViewAndMoreInfo(e) {
   e.preventDefault();
+  const fivedaysViewListEl = document.querySelector('.five-days-view-list');
+  const moreInfoListEl = document.querySelector('.more-info-list');
+
+  // remove previous search forcast
+  if (fivedaysViewListEl !== null) {
+    fivedaysViewListEl.remove();
+  }
+
+  if (moreInfoListEl !== null) {
+    moreInfoListEl.remove();
+  }
 
   try {
     let res = await getSearchCityCoordinates();
