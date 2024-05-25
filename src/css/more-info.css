@@ -25,6 +25,15 @@
   list-style-type: none;
 }
 
+.more-info .five-days-view-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  list-style-type: none;
+  margin-bottom: 20px;
+}
+
 .more-info .more-info-list {
   display: flex;
   flex-wrap: wrap;
@@ -34,7 +43,7 @@
 }
 
 .more-info .more-info-item {
-  padding: 15px 19px;
+  padding: 15px 15px;
   border-radius: 25px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   width: 120px;
@@ -105,4 +114,9 @@
   align-items: center;
   justify-content: center;
   margin-right: 15px;
+}
+
+.more-info a.more-info-link {
+  color: var(--white);
+  cursor: pointer;
 }
