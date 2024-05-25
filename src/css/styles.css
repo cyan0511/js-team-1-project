@@ -425,3 +425,11 @@ p {
 .five-day-view {
   transition: opacity 1.5s ease, transform 1.5s ease;
 }
+
+.lightning {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.7);
+}

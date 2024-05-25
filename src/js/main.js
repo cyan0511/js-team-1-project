@@ -1,9 +1,10 @@
 import { Notify } from 'notiflix';
 import { searchImage, searchRandomImage } from './pixabay-api';
-
 import { fetchCurrentWeather } from './weather-api';
 import { renderWeatherData } from './today';
 import { getCurrentLocation } from './current-location';
+import { lightningStart, lightningStop } from './lightning';
+import { startAnimation, stopAnimation } from './animation';
 
 const elQuote = document.querySelector('.quote');
 const elAuthor = document.querySelector('.quote-author');
@@ -18,10 +19,19 @@ const weatherInfoContainer = document.querySelector('.weather-info-container');
 const searchForm = document.getElementById('search-form');
 const loaderContainer = document.querySelector('.loader-container');
 
-btnToday.addEventListener('click', () => toggleView());
-btnFiveDays.addEventListener('click', () => toggleView());
+let currentWeather;
+
+btnToday.addEventListener('click', () => {
+  toggleView();
+  startAnimation(currentWeather);
+});
+btnFiveDays.addEventListener('click', () => {
+  toggleView();
+  stopAnimation();
+});
 
 function toggleView() {
+  // lightningStop();
   elTodayView.classList.toggle('visually-hidden');
   elFiveDayView.classList.toggle('visually-hidden');
   resetElements();
@@ -76,9 +86,11 @@ function getCurrentWeather(...args) {
   showLoader();
   fetchCurrentWeather(...args)
     .then(async data => {
+      currentWeather = data;
       renderWeatherData(data);
       weatherInfoContainer.classList.remove('visually-hidden');
       changeBackground(await searchImage(data.name));
+      startAnimation(currentWeather);
     })
     .catch(ex => {
       weatherInfoContainer.classList.add('visually-hidden');
@@ -103,7 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
   resetElements();
   typeText();
   showLoader();
-
   getCurrentLocation()
     .then(({ coords: { longitude, latitude } }) => {
       getCurrentWeather(longitude, latitude);
@@ -114,3 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .finally(hideLoader);
 });
+
+window.stopAnimation = stopAnimation;
+window.startAnimation = startAnimation;
