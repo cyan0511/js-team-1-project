@@ -23,6 +23,10 @@ body {
   background-position: center;
 }
 
+input:hover {
+  cursor: text;
+}
+
 .loader-container {
   position: fixed;
   top: 0;
