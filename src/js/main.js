@@ -6,6 +6,7 @@ import { getCurrentLocation } from './current-location';
 import { initializeQuoteSlider } from './quote-slider.js';
 import { initializeWeatherChart } from './weather-chart.js';
 import { initializeWeatherTime } from './weather-time.js';
+import { startAnimation, stopAnimation } from './animation';
 
 // Initialize Page
 document.addEventListener('DOMContentLoaded', () => {
@@ -22,7 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch(Notify.failure)
     .then(async () => {
-      changeBackground(await searchRandomImage());
+      changeBackground(
+        await searchRandomImage(currentWeather?.weather[0].main)
+      );
     })
     .finally(hideLoader);
 });
@@ -37,8 +40,16 @@ const weatherInfoContainer = document.querySelector('.weather-info-container');
 const searchForm = document.getElementById('search-form');
 const loaderContainer = document.querySelector('.loader-container');
 
-btnToday.addEventListener('click', () => toggleView());
-btnFiveDays.addEventListener('click', () => toggleView());
+let currentWeather;
+
+btnToday.addEventListener('click', () => {
+  toggleView();
+  startAnimation(currentWeather);
+});
+btnFiveDays.addEventListener('click', () => {
+  toggleView();
+  stopAnimation();
+});
 
 function toggleView() {
   elTodayView.classList.toggle('visually-hidden');
@@ -70,11 +81,19 @@ searchForm.addEventListener('submit', async event => {
 
 function getCurrentWeather(...args) {
   showLoader();
+  stopAnimation();
   return fetchCurrentWeather(...args)
     .then(async data => {
+      currentWeather = data;
       renderWeatherData(data);
       weatherInfoContainer.classList.remove('visually-hidden');
-      changeBackground(await searchImage(data.name));
+      const weather = currentWeather.weather[0].main;
+      let image = await searchImage(`${data.name} ${weather}`);
+      if (!image) {
+        image = await searchRandomImage(weather);
+      }
+      changeBackground(image);
+      startAnimation(currentWeather);
       // Weather Time
       initializeWeatherTime(data.name);
       return data;
@@ -98,3 +117,6 @@ function hideLoader() {
 Notify.init({
   position: 'left-top',
 });
+
+window.stopAnimation = stopAnimation;
+window.startAnimation = startAnimation;
