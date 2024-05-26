@@ -254,11 +254,9 @@ p {
   color: var(--white);
   display: flex;
   flex-direction: column;
-
   width: 340px;
   flex-shrink: 0;
-
-  margin: 0 110 20 0;
+  margin: 0 100 50 0;
   align-items: end;
 }
 
@@ -269,6 +267,7 @@ p {
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.88px;
+  margin-bottom: 30px;
 }
 
 .quote-author {
@@ -278,7 +277,6 @@ p {
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.72px;
-  margin-top: 30px;
 }
 
 .input-container {
@@ -428,4 +426,12 @@ p {
 .today-view,
 .five-day-view {
   transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+.lightning {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.7);
 }
