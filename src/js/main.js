@@ -1,9 +1,8 @@
 import { Notify } from 'notiflix';
-import { searchImage, searchRandomImage } from './pixabay-api';
-
 import { fetchCurrentWeather } from './weather-api';
 import { renderWeatherData } from './today';
 import { getCurrentLocation } from './current-location';
+import { searchImage } from './google-places-image-api'; 
 
 const elQuote = document.querySelector('.quote');
 const elAuthor = document.querySelector('.quote-author');
@@ -64,7 +63,7 @@ searchForm.addEventListener('submit', async event => {
   const city = document.getElementById('search-input').value.trim();
   if (city) {
     try {
-      getCurrentWeather(city);
+      await getCurrentWeather(city);
     } catch (error) {
       console.error(error);
       Notify.failure('City not found.');
@@ -72,19 +71,25 @@ searchForm.addEventListener('submit', async event => {
   }
 });
 
-function getCurrentWeather(...args) {
+async function getCurrentWeather(...args) {
   showLoader();
-  fetchCurrentWeather(...args)
-    .then(async data => {
-      renderWeatherData(data);
-      weatherInfoContainer.classList.remove('visually-hidden');
-      changeBackground(await searchImage(data.name));
-    })
-    .catch(ex => {
-      weatherInfoContainer.classList.add('visually-hidden');
-      Notify.failure('City not found.');
-    })
-    .finally(hideLoader);
+  try {
+    const data = await fetchCurrentWeather(...args);
+    renderWeatherData(data);
+    weatherInfoContainer.classList.remove('visually-hidden');
+    try {
+      const bgImage = await searchImage(data.name);
+      changeBackground(bgImage);
+    } catch (imageError) {
+      console.error('Error fetching image:', imageError.response ? imageError.response.data : imageError.message);
+      Notify.failure('Failed to fetch image.');
+    }
+  } catch (ex) {
+    weatherInfoContainer.classList.add('visually-hidden');
+    Notify.failure('City not found.');
+  } finally {
+    hideLoader();
+  }
 }
 
 function showLoader() {
@@ -99,18 +104,23 @@ Notify.init({
   position: 'left-top',
 });
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   resetElements();
   typeText();
   showLoader();
 
-  getCurrentLocation()
-    .then(({ coords: { longitude, latitude } }) => {
-      getCurrentWeather(longitude, latitude);
-    })
-    .catch(Notify.failure)
-    .then(async () => {
-      changeBackground(await searchRandomImage());
-    })
-    .finally(hideLoader);
+  try {
+    const { coords: { longitude, latitude } } = await getCurrentLocation();
+    await getCurrentWeather(longitude, latitude);
+  } catch (locationError) {
+    Notify.failure(locationError.message);
+    try {
+      const bgImage = await searchImage('sunset');
+      changeBackground(bgImage);
+    } catch (imageError) {
+      console.error('Error fetching random image:', imageError.response ? imageError.response.data : imageError.message);
+    }
+  } finally {
+    hideLoader();
+  }
 });
