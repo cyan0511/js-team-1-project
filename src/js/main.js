@@ -3,7 +3,6 @@ import { searchImage, searchRandomImage } from './pixabay-api';
 import { fetchCurrentWeather } from './weather-api';
 import { renderWeatherData } from './today';
 import { getCurrentLocation } from './current-location';
-import { lightningStart, lightningStop } from './lightning';
 import { startAnimation, stopAnimation } from './animation';
 
 const elQuote = document.querySelector('.quote');
@@ -84,12 +83,18 @@ searchForm.addEventListener('submit', async event => {
 
 function getCurrentWeather(...args) {
   showLoader();
+  stopAnimation();
   fetchCurrentWeather(...args)
     .then(async data => {
       currentWeather = data;
       renderWeatherData(data);
       weatherInfoContainer.classList.remove('visually-hidden');
-      changeBackground(await searchImage(data.name));
+      const weather = currentWeather.weather[0].main;
+      let image = await searchImage(`${data.name} ${weather}`);
+      if (!image) {
+        image = await searchRandomImage(weather);
+      }
+      changeBackground(image);
       startAnimation(currentWeather);
     })
     .catch(ex => {
@@ -121,7 +126,9 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch(Notify.failure)
     .then(async () => {
-      changeBackground(await searchRandomImage());
+      changeBackground(
+        await searchRandomImage(currentWeather?.weather[0].main)
+      );
     })
     .finally(hideLoader);
 });
