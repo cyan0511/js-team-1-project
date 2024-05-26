@@ -1,4 +1,8 @@
-document.addEventListener('DOMContentLoaded', function () {
+import { Chart, registerables } from 'chart.js';
+
+Chart.register(...registerables);
+
+export function initializeWeatherChart() {
   const ctx = document.getElementById('weatherChart').getContext('2d');
 
   const datasets = [
@@ -100,7 +104,6 @@ document.addEventListener('DOMContentLoaded', function () {
             color: '#ffffff54',
             font: {
               size: 14,
-
               lineHeight: 3,
             },
           },
@@ -108,4 +111,4 @@ document.addEventListener('DOMContentLoaded', function () {
       },
     },
   });
-});
+}
