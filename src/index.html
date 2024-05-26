@@ -17,9 +17,10 @@
       media="screen"
       href="./css/styles.css"
     />
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   </head>
 
-  <s>
     <header class="header">
       <div class="container">
         <nav class="nav"></nav>
@@ -30,7 +31,6 @@
         <div class="container">
           <div class="sqr1"></div>
           <div class="sqr2"></div>
-
           <div class="input-container">
             <form class="search__form" id="search-form">
               <svg width="24" height="24" class="input-geolocation">
@@ -48,11 +48,14 @@
                 </svg>
               </button>
             </form>
-          </div>
+          </div></div>
 
+          
           <div class="today-view">
-            <div class="weather-info-container">
-              <div class="weather-info">
+        <div class="weather-info-container">
+          <div data-aos="fade-left" data-aos-delay="400" data-aos-duration="600">
+          <div class="weather-info">
+                
                 <svg width="35" height="35" class="cloudy">
                   <use href="./images/icons.svg#cloudy"></use>
                 </svg>
@@ -83,9 +86,11 @@
                   5 DAYS
                 </button>
               </div>
-            </div>
+            </div></div>
 
-            <div class="date-card">
+
+            <div class="date-card" data-aos="fade-right" data-aos-delay="400" data-aos-duration="600">
+
               <div class="date-day">
                 <h1 class="date">8<sup>th</sup> Sat</h1>
 
@@ -109,6 +114,7 @@
                 </div>
               </div>
             </div>
+          
 
             <div class="quote-container">
               <svg class="icon-quote" width="35" height="32">
@@ -131,7 +137,7 @@
             </div>
             
             <include src="./partials/more-info.html"></include>
-            <!-- <include src="./partials/weather-chart.html"></include> -->
+            <include src="./partials/weather-chart.html"></include>
           </div>
         </div>
       </section>
@@ -139,5 +145,7 @@
     <footer class="footer"></footer>
     <script type="module" src="./js/main.js"></script>
     <script src="./js/hide-show.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init();</script>
   </body>
 </html>

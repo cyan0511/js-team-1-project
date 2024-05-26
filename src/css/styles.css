@@ -1,3 +1,5 @@
+
+
 :root {
   /*page color*/
   --navy_blue: #102136;
@@ -360,6 +362,7 @@ p {
 /* Fivedays CSS */
 
 .fivedays-moreinfo {
+    margin-bottom: 15px;
     /* display: flex; */
     /* justify-content: center; */
     width: 1060px;
@@ -475,7 +478,21 @@ ul {
   outline: none;
 }
 
+/* .fiveday-more-info:hover, 
+.fiveday-more-info:focus{
+color: #FFF;
+opacity: 1;
+} */
+
+.day:focus {
+  color: #FF6B09;
+  opacity: 1;
+}
+
 /* More Info CSS */
+.more-info {
+  transition: all 0.5s linear;
+}
 
 .more-info-list {
   display: flex;
@@ -493,6 +510,19 @@ ul {
   border: 1px solid rgba(255, 255, 255, 0.20);
   row-gap: 10px;
   padding: 16px 0;
+}
+
+.time {
+  color: #FFF;
+  font-size: 14px;
+  font-weight: 400;
+  opacity: 0.54;
+}
+
+.temperature {
+  color: #FF6B09;
+  font-size: 25px;
+  font-weight: 700;
 }
 
 .measurement-list {
