@@ -8,7 +8,7 @@ import { initializeQuoteSlider } from './quote-slider.js';
 import { initializeWeatherChart } from './weather-chart.js';
 import { initializeWeatherTime } from './weather-time.js';
 import { startAnimation, stopAnimation } from './animation';
-
+import { setupToggleChart } from './hide-show';
 
 import 'aos/dist/aos.css';
 import '../css/more-info.css';
@@ -18,13 +18,14 @@ import '../css/five-days.css';
 document.addEventListener('DOMContentLoaded', () => {
   showLoader();
   initializeQuoteSlider();
-  initializeWeatherChart();
+  setupToggleChart();
 
   // Current Location
   getCurrentLocation()
     .then(({ coords: { longitude, latitude } }) => {
       getCurrentWeather(longitude, latitude).then(data => {
         initializeWeatherTime(data.name);
+        initializeWeatherChart(data.name);
       });
     })
     .catch(Notify.failure)
@@ -77,6 +78,7 @@ searchForm.addEventListener('submit', async event => {
     try {
       getCurrentWeather(city).then(data => {
         initializeWeatherTime(city); // Pass the searched city
+        initializeWeatherChart(city);
       });
     } catch (error) {
       console.error(error);
