@@ -336,7 +336,7 @@ p {
   left: 26px;
 }
 
-@media (max-height: 650px) {
+@media screen and (max-height: 650px) {
   .quote-container {
     display: none;
   }
