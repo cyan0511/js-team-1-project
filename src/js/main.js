@@ -9,6 +9,7 @@ import { initializeQuoteSlider } from './quote-slider.js';
 import { initializeWeatherChart } from './weather-chart.js';
 import { initializeWeatherTime } from './weather-time.js';
 import { startAnimation, stopAnimation } from './animation';
+import { setupToggleChart } from './hide-show';
 
 import 'aos/dist/aos.css';
 import '../css/more-info.css';
@@ -19,7 +20,7 @@ import { renderFiveDaysData } from './five-days';
 document.addEventListener('DOMContentLoaded', async () => {
   showLoader();
   initializeQuoteSlider();
-  initializeWeatherChart();
+  setupToggleChart();
 
   try {
     // Current Location
@@ -89,13 +90,11 @@ async function getCurrentWeather(...args) {
   showLoader();
   stopAnimation();
   try {
+    // today view
     currentWeather = await fetchCurrentWeather(...args);
     renderTodayWeatherData(currentWeather);
-
-    const fiveDaysWeather = await fetchFiveDaysWeather(...args);
-    window.fiveDaysWeather = fiveDaysWeather;
-    renderFiveDaysData(fiveDaysWeather);
-
+    // Weather Time
+    void initializeWeatherTime(currentWeather);
     weatherInfoContainer.classList.remove('visually-hidden');
     dateCardContainer.classList.remove('visually-hidden');
     const weather = currentWeather.weather[0].main;
@@ -105,8 +104,12 @@ async function getCurrentWeather(...args) {
     }
     changeBackground(image);
     startAnimation(currentWeather);
-    // Weather Time
-    void initializeWeatherTime(currentWeather);
+
+    // five days view
+    const fiveDaysWeather = await fetchFiveDaysWeather(...args);
+    window.fiveDaysWeather = fiveDaysWeather;
+    renderFiveDaysData(fiveDaysWeather);
+    void initializeWeatherChart(fiveDaysWeather);
   } catch (ex) {
     weatherInfoContainer.classList.add('visually-hidden');
     dateCardContainer.classList.add('visually-hidden');
