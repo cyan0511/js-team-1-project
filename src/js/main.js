@@ -8,7 +8,7 @@ import { initializeQuoteSlider } from './quote-slider.js';
 import { initializeWeatherChart } from './weather-chart.js';
 import { initializeWeatherTime } from './weather-time.js';
 import { startAnimation, stopAnimation } from './animation';
-
+import { addToFavorite } from './favorites-cities.js';
 
 import 'aos/dist/aos.css';
 import '../css/more-info.css';
@@ -45,6 +45,11 @@ const elFiveDayView = document.querySelector('.five-day-view');
 const weatherInfoContainer = document.querySelector('.weather-info-container');
 const searchForm = document.getElementById('search-form');
 const loaderContainer = document.querySelector('.loader-container');
+const favoriteBtn = document.querySelector('.btn-favourite');
+// const favoriteIcon = document.querySelector('.fovourite-icon');
+console.log(favoriteBtn);
+favoriteBtn.addEventListener('click',()=> addToFavorite());
+// favoriteIcon.addEventListener('click', addToFavorite);
 
 let currentWeather;
 

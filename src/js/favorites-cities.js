@@ -1,33 +1,54 @@
 import { Notify } from "notiflix";
+import { WEATHER_API_KEY, WEATHER_API_ENDPOINT } from './api';
 
-const favoriteBtn = document.querySelector('.btn-favourite');
-const favoriteIcon = document.querySelector('.fovourite-icon');
+
+// const favoriteIcon = document.querySelector('.fovourite-icon');
 const searchData = document.querySelector('#search-input');
 const favoriteCityList = document.querySelector('.favorite_city-list');
-const favorite_list_close = document.querySelector('.favorite_list-close');
 
-favoriteBtn.addEventListener('click', addToFavorite);
-favoriteIcon.addEventListener('click', addToFavorite);
+// favoriteBtn.addEventListener('click', addToFavorite);
 
 
-function addToFavorite (){
-    if (searchData.value === ""){
+
+export function addToFavorite() {
+    const searchValue = searchData.value.trim();
+    
+    if (searchValue === "") {
         Notify.info("Please enter a city!");
         return;
-    }else{
-        let search_array = JSON.parse(localStorage.getItem('city')) || [];
-        if(search_array.map(item => item.toUpperCase()).includes(searchData.value.toUpperCase())){
-            return Notify.info("Already added to favorites!");
-        }else{
-        search_array.push(searchData.value);
-        localStorage.setItem('city', JSON.stringify(search_array));
-        searchData.value = '';
-        updateCityList(); 
-        Notify.info("Added to favorites!");
+    }
+    
+    let searchArray = JSON.parse(localStorage.getItem('city')) || [];
+    
+    if (searchArray.map(item => item.toUpperCase()).includes(searchValue.toUpperCase())) {
+        Notify.info("Already added to favorites!");
+        return;
+    }
+    
+    const weatherDataUrl = `${WEATHER_API_ENDPOINT}/data/2.5/weather?q=${searchValue}&appid=${WEATHER_API_KEY}`;
+   
+    fetch(weatherDataUrl)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("There is no such city!");
         }
-       
-    }}
-function updateCityList(){
+        return response.json();
+    })
+    .then(data => {
+        searchArray.push(searchValue);
+        localStorage.setItem('city', JSON.stringify(searchArray));
+        searchData.value = '';
+        updateCityList();
+        Notify.info("Added to favorites!");
+    })
+    .catch(error => {
+        Notify.info(error.message || 'An error occurred while fetching the weather data.');
+        console.error('Fetch error:', error);
+    });
+};
+
+
+export function updateCityList(){
     const storedCities = JSON.parse(localStorage.getItem('city')) || [];
     favoriteCityList.innerHTML = ''; 
     storedCities.forEach(city =>{
@@ -44,7 +65,7 @@ function updateCityList(){
         button.addEventListener('click', removeFavorite);
     });
 }
-function removeFavorite(event) {
+export function removeFavorite(event) {
     const index = event.target.getAttribute('data-index');
     let search_array = JSON.parse(localStorage.getItem('city')) || [];
     search_array.splice(index, 1);

@@ -439,12 +439,17 @@ p {
 .favorite_container{
   display: flex;
   justify-content: center;
-  
+ 
 }
 .favorite_city-list{
   display: flex;
   align-items: center;
   gap: 10px;
+  width: 500px;
+  overflow-x: scroll;
+}
+.favorite_city-list::-webkit-scrollbar {
+  display: none;
 }
 .favorite-list_item{
   list-style: none;
@@ -465,10 +470,11 @@ p {
   border: none;
   outline: none;
   box-shadow: none;
-  /* background-color: var(--orange); */
   background-image: url('/src/images/close.png');
   background-repeat: no-repeat;
   background-position: center;
   width: 20px;
   border-radius: 50%;
+  cursor: pointer;
 }
+
