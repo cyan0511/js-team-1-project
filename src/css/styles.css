@@ -86,7 +86,7 @@ input:hover {
   }
 }
 
-h1,
+h1, h2, h3,h4, h5, h6,
 p {
   margin: 0;
 }
@@ -98,7 +98,6 @@ p {
 
 .date-card {
   background-color: rgba(16, 33, 54, 0.6);
-
   border-radius: 0px 34px 0px 0px;
   width: 630;
   height: 278px;
