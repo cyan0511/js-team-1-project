@@ -98,26 +98,39 @@ p {
 
 .date-card {
   background-color: rgba(16, 33, 54, 0.6);
-  border-radius: 0px 34px 0px 0px;
-  width: 630;
-  height: 278px;
-  bottom: 0;
-  left: 0;
-  position: fixed;
-  flex-shrink: 0;
+  border-radius: 34px;
+  width: 280px;
+  height: 190px;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .date-card{
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  /* .date-card {
+
+  } */
 }
 
 .date-day {
   margin-top: 60px;
   margin-left: 110px;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   flex-shrink: 0;
-
   color: #fff;
 }
+
+
 
 .other-info {
   flex-shrink: 0;
@@ -151,17 +164,23 @@ p {
 }
 
 .weather-info-container {
-  position: fixed; /* or absolute if within a positioned parent */
+  position: absolute;
   top: 50%;
-  right: 0;
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
+/* 
+@media screen and (min-width: 1280px) {
+  .weather-info-container {
+  }
+} */
+
 .weather-info {
-  border-radius: 34px 0px 0px 34px;
+  border-radius: 34px;
   background: #102136;
-  width: 450px;
-  height: 300px;
+  width: 280px;
+  height: 190px;
   flex-shrink: 0;
   /* shadow */
   box-shadow: 0px 8px 43px 0px rgba(16, 33, 54, 0.6);
@@ -171,24 +190,63 @@ p {
   justify-content: center;
 }
 
+@media screen and (min-width: 768px) {
+  .weather-info {
+    width: 500px;
+    height: 300px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .weather-info {
+  width: 450px; 
+  height: 300px;
+  border-radius: 34px 0px 0px 34px;
+  }
+}
+
 .city {
   color: #767d85;
   text-align: center;
-  font-size: 18px;
-  font-style: normal;
+  font-size: 16px;
   font-weight: 400;
-  line-height: normal;
-  margin: 10 0 10 0;
+  margin: 10 0;
+}
+
+
+@media screen and (min-width: 1280px) {
+  .city {
+    font-size: 18px;
+  }
 }
 
 .current-temp {
   color: var(--white);
   text-align: center;
-  font-size: 90px;
+  font-size: 45px;
   font-style: normal;
   font-weight: 300;
-  line-height: normal;
   letter-spacing: 3.6px;
+}
+
+@media screen and (min-width: 768px) {
+  .current-temp {
+    font-size: 90px;
+  }
+}
+
+.temp-wrapper {
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+  align-items: end;
+}
+
+@media screen and (min-width: 768px) {
+  .temp-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .min-max-temp {
@@ -196,49 +254,68 @@ p {
   gap: 20px;
 }
 
+
+
 .info-item {
   text-align: center;
   flex-direction: column;
-  font-size: 12px;
+  font-size: 14px;
   display: flex;
-
   color: #767d85;
-
   text-align: center;
-  font-size: 18px;
-  font-style: normal;
+  font-size: 14px;
   font-weight: 400;
-  line-height: normal;
 }
 
-.min-temp,
-.max-temp {
+@media screen and (min-width: 768px) {
+.info-item {
+    font-size: 18px;
+  }
+}
+
+ .min-temp,
+ .max-temp{
   color: var(--white);
   text-align: center;
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
+}
+
+@media screen and (min-width: 768px) {
+  .min-temp,
+  .max-temp {
+    font-size: 18px;
+  }
 }
 
 .buttons-toggle {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
   margin-top: 21px;
 }
 
+@media screen and (min-width: 768px) {
+  .buttons-toggle {
+    margin-top: 40px;
+    justify-content: center;
+    gap: 18px;
+  }
+}
+
 .today,
 .five-days {
   border-radius: 20px;
   background-color: rgba(255, 255, 255, 0.5);
-
+  border: none;
   width: 126px;
   height: 27px;
   padding: 0px 12px;
   cursor: not-allowed;
+  font-weight: 700;
 }
 
 .button-active {
@@ -315,7 +392,7 @@ p {
 }
 
 #search-input {
-  width: 506px;
+  width: 221px;
   height: 48px;
   font-size: 20px;
   border-radius: 27px;
@@ -323,6 +400,18 @@ p {
   padding-left: 60px;
   border: none;
   background-color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  #search-input {
+    width: 440px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  #search-input {
+    width: 520px;
+  }
 }
 
 #search-input,
@@ -434,3 +523,5 @@ p {
   top: 0;
   background: rgba(0, 0, 0, 0.7);
 }
+
+
