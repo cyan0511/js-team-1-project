@@ -1,4 +1,5 @@
 import { Notify } from 'notiflix';
+import AOS from 'aos';
 import { searchImage, searchRandomImage } from './pixabay-api';
 import { fetchCurrentWeather } from './weather-api';
 import { renderWeatherData } from './today';
@@ -7,6 +8,11 @@ import { initializeQuoteSlider } from './quote-slider.js';
 import { initializeWeatherChart } from './weather-chart.js';
 import { initializeWeatherTime } from './weather-time.js';
 import { startAnimation, stopAnimation } from './animation';
+
+
+import 'aos/dist/aos.css';
+import '../css/more-info.css';
+import '../css/five-days.css';
 
 // Initialize Page
 document.addEventListener('DOMContentLoaded', () => {
@@ -117,6 +123,8 @@ function hideLoader() {
 Notify.init({
   position: 'left-top',
 });
+
+AOS.init();
 
 window.stopAnimation = stopAnimation;
 window.startAnimation = startAnimation;

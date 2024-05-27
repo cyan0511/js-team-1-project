@@ -1,21 +1,324 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Weather App - Team 1</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      media="screen"
-      href="./css/more-info.css"
-    />
-  </head>
-  <body>
-    <main>
-      <section>
-        <div class="more-info">
+     <section class="fivedays-moreinfo">
+        <!-- fivedays -->
+          <div class="fivedays-container">
+            <div class="weather-wrap">
+              <ul class="card-content">
+                <li class="card" id="card">
+                  <p id="day" class="day" tabindex="0">Sunday</p>
+                  <p class="fivedays-date">09 Feb</p>
+                  <img src="https://picsum.photos/35/35" alt="" class="fivedays-icon">
+                  <div class="temp-info">
+                    <div class="box">
+                      <p class="text-min">min</p>
+                      <p class="num-min"> -2°</p>
+                    </div>
+                    <div class="separator"></div>
+                    <div class="box">
+                      <p class="text-max">max</p>
+                      <p class="num-max"> 1°</p>
+                    </div>
+                  </div>
+                  <button class="fiveday-more-info" onclick="toggleMoreInfo()">more info</button>
+                </li>
+
+                <li class="card" id="card">
+                  <p id="day" class="day">Monday</p>
+                  <p class="fivedays-date">10 Feb</p>
+                  <img src="https://picsum.photos/35/35" alt="" class="fivedays-icon">
+                  <div class="temp-info">
+                    <div class="box">
+                      <p class="text-min">min</p>
+                      <p class="num-min"> -2°</p>
+                    </div>
+                    <div class="separator"></div>
+                    <div class="box">
+                      <p class="text-max">max</p>
+                      <p class="num-max"> 1°</p>
+                    </div>
+                  </div>
+                  <button class="fiveday-more-info" onclick="toggleMoreInfo()">more info</button>
+                </li>
+
+                <li class="card" id="card">
+                  <p class="day">Tuesday</p>
+                  <p class="fivedays-date">11 Feb</p>
+                  <img src="https://picsum.photos/35/35" alt="" class="fivedays-icon">
+                  <div class="temp-info">
+                    <div class="box">
+                      <p class="text-min">min</p>
+                      <p class="num-min"> -2°</p>
+                    </div>
+                    <div class="separator"></div>
+                    <div class="box">
+                      <p class="text-max">max</p>
+                      <p class="num-max"> 1°</p>
+                    </div>
+                  </div>
+                  <button class="fiveday-more-info" onclick="toggleMoreInfo()">more info</button>
+                </li>
+
+                <li class="card" id="card">
+                  <p class="day">Wednesday</p>
+                  <p class="fivedays-date">12 Feb</p>
+                  <img src="https://picsum.photos/35/35" alt="" class="fivedays-icon">
+                  <div class="temp-info">
+                    <div class="box">
+                      <p class="text-min">min</p>
+                      <p class="num-min"> -2°</p>
+                    </div>
+                    <div class="separator"></div>
+                    <div class="box">
+                      <p class="text-max">max</p>
+                      <p class="num-max"> 1°</p>
+                    </div>
+                  </div>
+                  <button class="fiveday-more-info" onclick="toggleMoreInfo()">more info</button>
+                </li>
+
+                <li class="card" id="card">
+                  <p class="day" >Thursday</p>
+                  <p class="fivedays-date">13 Feb</p>
+                  <img src="https://picsum.photos/35/35" alt="" class="fivedays-icon">
+                  <div class="temp-info">
+                    <div class="box">
+                      <p class="text-min">min</p>
+                      <p class="num-min"> -2°</p>
+                    </div>
+                    <div class="separator"></div>
+                    <div class="box">
+                      <p class="text-max">max</p>
+                      <p class="num-max"> 1°</p>
+                    </div>
+                  </div>
+                  <button class="fiveday-more-info" onclick="toggleMoreInfo()">more info</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        <!-- more info -->
+          <div class="more-info visually-hidden-TODO" id="more-info-data">
+            <ul class="more-info-list">
+              <li class="more-info-item">
+                <h3 class="time">00:00</h3>
+                <img src="https://picsum.photos/35/35" alt="" class="icon">
+                <h2 class="temperature">-2°</h2>
+                    <ul class="measurement-list">
+                      <li class="measurement-item">
+                        <span class="icon">
+                          <svg width="20" height="20">
+                            <use href="./images/icons.svg#barometer"></use>
+                          </svg>
+                        </span>
+                        <span class="barometer">772 mm</span>
+                      </li>
+                      <li class="measurement-item">
+                        <span class="icon">
+                          <svg width="20" height="20">
+                            <use href="./images/icons.svg#humidity"></use>
+                          </svg>
+                        </span>
+                        <span class="humidity">54%</span>
+                      </li>
+                      <li class="measurement-item">
+                        <span class="icon">
+                          <svg width="20" height="20">
+                            <use href="./images/icons.svg#wind"></use>
+                          </svg>
+                        </span>
+                        <span class="wind">3.7 m/s</span>
+                      </li>
+                    </ul>
+              </li>
+              <li class="more-info-item">
+                <h3 class="time">00:00</h3>
+                <img src="https://picsum.photos/35/35" alt="" class="icon">
+                <h2 class="temperature">-2°</h2>
+                <ul class="measurement-list">
+                  <li class="measurement-item">
+                    <span class="icon">
+                      <svg width="20" height="20">
+                        <use href="./images/icons.svg#barometer"></use>
+                      </svg>
+                    </span>
+                    <span class="barometer">772 mm</span>
+                  </li>
+                  <li class="measurement-item">
+                    <span class="icon">
+                      <svg width="20" height="20">
+                        <use href="./images/icons.svg#humidity"></use>
+                      </svg>
+                    </span>
+                    <span class="humidity">54%</span>
+                  </li>
+                  <li class="measurement-item">
+                    <span class="icon">
+                      <svg width="20" height="20">
+                        <use href="./images/icons.svg#wind"></use>
+                      </svg>
+                    </span>
+                    <span class="wind">3.7 m/s</span>
+                  </li>
+                </ul>
+              </li>
+              <li class="more-info-item">
+                <h3 class="time">00:00</h3>
+                <img src="https://picsum.photos/35/35" alt="" class="icon">
+                <h2 class="temperature">-2°</h2>
+                <ul class="measurement-list">
+                  <li class="measurement-item">
+                    <span class="icon">
+                      <svg width="20" height="20">
+                        <use href="./images/icons.svg#barometer"></use>
+                      </svg>
+                    </span>
+                    <span class="barometer">772 mm</span>
+                  </li>
+                  <li class="measurement-item">
+                    <span class="icon">
+                      <svg width="20" height="20">
+                        <use href="./images/icons.svg#humidity"></use>
+                      </svg>
+                    </span>
+                    <span class="humidity">54%</span>
+                  </li>
+                  <li class="measurement-item">
+                    <span class="icon">
+                      <svg width="20" height="20">
+                        <use href="./images/icons.svg#wind"></use>
+                      </svg>
+                    </span>
+                    <span class="wind">3.7 m/s</span>
+                  </li>
+                </ul>
+              </li>
+              <li class="more-info-item">
+                <h3 class="time">00:00</h3>
+                <img src="https://picsum.photos/35/35" alt="" class="icon">
+                <h2 class="temperature">-2°</h2>
+                <ul class="measurement-list">
+                  <li class="measurement-item">
+                    <span class="icon">
+                      <svg width="20" height="20">
+                        <use href="./images/icons.svg#barometer"></use>
+                      </svg>
+                    </span>
+                    <span class="barometer">772 mm</span>
+                  </li>
+                  <li class="measurement-item">
+                    <span class="icon">
+                      <svg width="20" height="20">
+                        <use href="./images/icons.svg#humidity"></use>
+                      </svg>
+                    </span>
+                    <span class="humidity">54%</span>
+                  </li>
+                  <li class="measurement-item">
+                    <span class="icon">
+                      <svg width="20" height="20">
+                        <use href="./images/icons.svg#wind"></use>
+                      </svg>
+                    </span>
+                    <span class="wind">3.7 m/s</span>
+                  </li>
+                </ul>
+              </li>
+              <li class="more-info-item">
+                <h3 class="time">00:00</h3>
+                <img src="https://picsum.photos/35/35" alt="" class="icon">
+                <h2 class="temperature">-2°</h2>
+                <ul class="measurement-list">
+                  <li class="measurement-item">
+                    <span class="icon">
+                      <svg width="20" height="20">
+                        <use href="./images/icons.svg#barometer"></use>
+                      </svg>
+                    </span>
+                    <span class="barometer">772 mm</span>
+                  </li>
+                  <li class="measurement-item">
+                    <span class="icon">
+                      <svg width="20" height="20">
+                        <use href="./images/icons.svg#humidity"></use>
+                      </svg>
+                    </span>
+                    <span class="humidity">54%</span>
+                  </li>
+                  <li class="measurement-item">
+                    <span class="icon">
+                      <svg width="20" height="20">
+                        <use href="./images/icons.svg#wind"></use>
+                      </svg>
+                    </span>
+                    <span class="wind">3.7 m/s</span>
+                  </li>
+                </ul>
+              </li>
+              <li class="more-info-item">
+                <h3 class="time">00:00</h3>
+                <img src="https://picsum.photos/35/35" alt="" class="icon">
+                <h2 class="temperature">-2°</h2>
+                <ul class="measurement-list">
+                  <li class="measurement-item">
+                    <span class="icon">
+                      <svg width="20" height="20">
+                        <use href="./images/icons.svg#barometer"></use>
+                      </svg>
+                    </span>
+                    <span class="barometer">772 mm</span>
+                  </li>
+                  <li class="measurement-item">
+                    <span class="icon">
+                      <svg width="20" height="20">
+                        <use href="./images/icons.svg#humidity"></use>
+                      </svg>
+                    </span>
+                    <span class="humidity">54%</span>
+                  </li>
+                  <li class="measurement-item">
+                    <span class="icon">
+                      <svg width="20" height="20">
+                        <use href="./images/icons.svg#wind"></use>
+                      </svg>
+                    </span>
+                    <span class="wind">3.7 m/s</span>
+                  </li>
+                </ul>
+              </li>
+              <li class="more-info-item">
+                <h3 class="time">00:00</h3>
+                <img src="https://picsum.photos/35/35" alt="" class="icon">
+                <h2 class="temperature">-2°</h2>
+                <ul class="measurement-list">
+                  <li class="measurement-item">
+                    <span class="icon">
+                      <svg width="20" height="20">
+                        <use href="./images/icons.svg#barometer"></use>
+                      </svg>
+                    </span>
+                    <span class="barometer">772 mm</span>
+                  </li>
+                  <li class="measurement-item">
+                    <span class="icon">
+                      <svg width="20" height="20">
+                        <use href="./images/icons.svg#humidity"></use>
+                      </svg>
+                    </span>
+                    <span class="humidity">54%</span>
+                  </li>
+                  <li class="measurement-item">
+                    <span class="icon">
+                      <svg width="20" height="20">
+                        <use href="./images/icons.svg#wind"></use>
+                      </svg>
+                    </span>
+                    <span class="wind">3.7 m/s</span>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+        <!-- <div class="more-info">
           <div class="more-info-container">
             <div class="visually-hidden">
               <span class="icon-barometer">
@@ -35,8 +338,5 @@
               </span>
             </div>
           </div>
-        </div>
+        </div> -->
       </section>
-    </main>
-  </body>
-</html>

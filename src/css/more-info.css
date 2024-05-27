@@ -115,8 +115,3 @@
   justify-content: center;
   margin-right: 15px;
 }
-
-.more-info a.more-info-link {
-  color: var(--white);
-  cursor: pointer;
-}
