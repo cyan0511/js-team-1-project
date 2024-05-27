@@ -1,9 +1,40 @@
-// TODO: use pixabay api
-import backgroundImage from '../images/background.png';
-import backgroundImage2 from '../images/city.png';
+import { Notify } from 'notiflix';
+import AOS from 'aos';
+import { searchImage, searchRandomImage } from './pixabay-api';
+import { fetchCurrentWeather } from './weather-api';
+import { renderWeatherData } from './today';
+import { getCurrentLocation } from './current-location';
+import { initializeQuoteSlider } from './quote-slider.js';
+import { initializeWeatherChart } from './weather-chart.js';
+import { initializeWeatherTime } from './weather-time.js';
+import { startAnimation, stopAnimation } from './animation';
 
-const elQuote = document.querySelector('.quote');
-const elAuthor = document.querySelector('.quote-author');
+
+import 'aos/dist/aos.css';
+import '../css/more-info.css';
+import '../css/five-days.css';
+
+// Initialize Page
+document.addEventListener('DOMContentLoaded', () => {
+  showLoader();
+  initializeQuoteSlider();
+  initializeWeatherChart();
+
+  // Current Location
+  getCurrentLocation()
+    .then(({ coords: { longitude, latitude } }) => {
+      getCurrentWeather(longitude, latitude).then(data => {
+        initializeWeatherTime(data.name);
+      });
+    })
+    .catch(Notify.failure)
+    .then(async () => {
+      changeBackground(
+        await searchRandomImage(currentWeather?.weather[0].main)
+      );
+    })
+    .finally(hideLoader);
+});
 
 const btnToday = document.querySelector('#btn-today');
 const btnFiveDays = document.querySelector('#btn-five-days');
@@ -11,22 +42,24 @@ const btnFiveDays = document.querySelector('#btn-five-days');
 const elTodayView = document.querySelector('.today-view');
 const elFiveDayView = document.querySelector('.five-day-view');
 
-btnToday.addEventListener('click', () => toggleView());
-btnFiveDays.addEventListener('click', () => toggleView());
+const weatherInfoContainer = document.querySelector('.weather-info-container');
+const searchForm = document.getElementById('search-form');
+const loaderContainer = document.querySelector('.loader-container');
 
-let toggled = false;
+let currentWeather;
+
+btnToday.addEventListener('click', () => {
+  toggleView();
+  startAnimation(currentWeather);
+});
+btnFiveDays.addEventListener('click', () => {
+  toggleView();
+  stopAnimation();
+});
+
 function toggleView() {
   elTodayView.classList.toggle('visually-hidden');
   elFiveDayView.classList.toggle('visually-hidden');
-  changeBackground(toggled ? backgroundImage2 : backgroundImage);
-  resetElements();
-  typeText();
-}
-
-function resetElements() {
-  index = 0;
-  elQuote.innerHTML = '';
-  elAuthor.innerHTML = '';
 }
 
 function changeBackground(newBg) {
@@ -35,28 +68,63 @@ function changeBackground(newBg) {
       rgba(0, 0, 0, 0) 70%,
       rgba(0, 0, 0, 0.9)
     ), url(${newBg})`;
-  toggled = !toggled;
 }
 
-// TODO: use API for random quotes
-const text =
-  "Who cares about the clouds when we're together? Just sing a song and bring the sunny weather.";
-const author = 'Dale Evans';
-const delay = 50; // Delay between each character (in milliseconds)
-let index = 0;
-
-function typeText() {
-  if (index < text.length) {
-    elQuote.innerHTML += text.charAt(index);
-    index++;
-    setTimeout(typeText, delay);
-  } else {
-    elAuthor.innerHTML = author;
+searchForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  const city = document.getElementById('search-input').value.trim();
+  if (city) {
+    try {
+      getCurrentWeather(city).then(data => {
+        initializeWeatherTime(city); // Pass the searched city
+      });
+    } catch (error) {
+      console.error(error);
+      Notify.failure('City not found.');
+    }
   }
+});
+
+function getCurrentWeather(...args) {
+  showLoader();
+  stopAnimation();
+  return fetchCurrentWeather(...args)
+    .then(async data => {
+      currentWeather = data;
+      renderWeatherData(data);
+      weatherInfoContainer.classList.remove('visually-hidden');
+      const weather = currentWeather.weather[0].main;
+      let image = await searchImage(`${data.name} ${weather}`);
+      if (!image) {
+        image = await searchRandomImage(weather);
+      }
+      changeBackground(image);
+      startAnimation(currentWeather);
+      // Weather Time
+      initializeWeatherTime(data.name);
+      return data;
+    })
+    .catch(ex => {
+      weatherInfoContainer.classList.add('visually-hidden');
+      Notify.failure('City not found.');
+      throw ex;
+    })
+    .finally(hideLoader);
 }
 
-// Start typing the text when the page loads
-window.onload = function () {
-  resetElements();
-  typeText();
-};
+function showLoader() {
+  loaderContainer.classList.remove('visually-hidden');
+}
+
+function hideLoader() {
+  loaderContainer.classList.add('visually-hidden');
+}
+
+Notify.init({
+  position: 'left-top',
+});
+
+AOS.init();
+
+window.stopAnimation = stopAnimation;
+window.startAnimation = startAnimation;

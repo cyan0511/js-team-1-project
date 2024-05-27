@@ -16,17 +16,77 @@ body {
   background-color: #f0f0f0;
   margin: 0;
   height: 100vh;
-
-  background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0) 70%,
-      rgba(0, 0, 0, 0.9)
-    ),
-    url(../images/city.png) no-repeat center center fixed;
+  background: linear-gradient(135deg, #373736, #242424);
   background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-h1,
+input:hover {
+  cursor: text;
+}
+
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+
+  background-color: rgba(56, 56, 56, 0);
+  z-index: 9999; /* Ensure loader is on top of other content */
+}
+
+.loader {
+  top: 180;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  background: #e54919;
+  display: block;
+  margin: 20px auto;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotationBack 2.5s ease-in-out infinite reverse;
+}
+.loader::before {
+  content: '';
+  box-sizing: border-box;
+  left: 0;
+  top: 0;
+  transform: rotate(45deg);
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: #e54919;
+}
+.loader::after {
+  content: '';
+  box-sizing: border-box;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: #e2800090;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+}
+@keyframes rotationBack {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+h1, h2, h3,h4, h5, h6,
 p {
   margin: 0;
 }
@@ -38,7 +98,6 @@ p {
 
 .date-card {
   background-color: rgba(16, 33, 54, 0.6);
-
   border-radius: 0px 34px 0px 0px;
   width: 630;
   height: 278px;
@@ -194,11 +253,9 @@ p {
   color: var(--white);
   display: flex;
   flex-direction: column;
-
   width: 340px;
   flex-shrink: 0;
-
-  margin: 0 110 20 0;
+  margin: 0 100 50 0;
   align-items: end;
 }
 
@@ -209,6 +266,7 @@ p {
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.88px;
+  margin-bottom: 30px;
 }
 
 .quote-author {
@@ -218,7 +276,6 @@ p {
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.72px;
-  margin-top: 30px;
 }
 
 .input-container {
@@ -272,7 +329,6 @@ p {
 #search-input::placeholder {
   color: #000;
   font-size: 14px;
-  font-family: Lato;
   font-weight: 400;
 }
 
@@ -283,6 +339,13 @@ p {
 @media (max-height: 650px) {
   .quote-container {
     display: none;
+  }
+}
+
+@media (max-width: 950px) {
+  .loader {
+    left: 0;
+    top: 50;
   }
 }
 
@@ -355,6 +418,21 @@ p {
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+  transition: opacity 1.5s ease, transform 1.5s ease;
+  opacity: 0;
+}
+
+.today-view,
+.five-day-view {
+  transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+.lightning {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.7);
 }
 
 /* ivan - favorite city */
