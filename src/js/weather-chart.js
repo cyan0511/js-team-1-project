@@ -1,29 +1,14 @@
 import { Chart, registerables } from 'chart.js';
-import { WEATHER_API_KEY, WEATHER_API_ENDPOINT } from './api';
 import { Notify } from 'notiflix';
 
 Chart.register(...registerables);
 
 let weatherChart;
 
-export async function initializeWeatherChart(city) {
+export async function initializeWeatherChart(data) {
   const ctx = document.getElementById('weatherChart').getContext('2d');
 
   try {
-    // Fetch the 5-day weather forecast
-    const response = await fetch(
-      `${WEATHER_API_ENDPOINT}/data/2.5/forecast?q=${city}&appid=${WEATHER_API_KEY}&units=metric`
-    );
-
-    if (!response.ok) {
-      throw new Error(`Failed to fetch weather data: ${response.statusText}`);
-    }
-
-    const data = await response.json();
-    if (!data.list || data.list.length === 0) {
-      throw new Error('No weather data found');
-    }
-
     // Extract the data for the next 5 days
     const filteredData = data.list
       .filter((item, index) => index % 8 === 0)

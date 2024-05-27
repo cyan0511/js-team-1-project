@@ -90,13 +90,11 @@ async function getCurrentWeather(...args) {
   showLoader();
   stopAnimation();
   try {
+    // today view
     currentWeather = await fetchCurrentWeather(...args);
     renderTodayWeatherData(currentWeather);
-
-    const fiveDaysWeather = await fetchFiveDaysWeather(...args);
-    window.fiveDaysWeather = fiveDaysWeather;
-    renderFiveDaysData(fiveDaysWeather);
-
+    // Weather Time
+    void initializeWeatherTime(currentWeather);
     weatherInfoContainer.classList.remove('visually-hidden');
     dateCardContainer.classList.remove('visually-hidden');
     const weather = currentWeather.weather[0].main;
@@ -106,9 +104,12 @@ async function getCurrentWeather(...args) {
     }
     changeBackground(image);
     startAnimation(currentWeather);
-    // Weather Time
-    void initializeWeatherTime(currentWeather);
-    void initializeWeatherChart(currentWeather.name);
+
+    // five days view
+    const fiveDaysWeather = await fetchFiveDaysWeather(...args);
+    window.fiveDaysWeather = fiveDaysWeather;
+    renderFiveDaysData(fiveDaysWeather);
+    void initializeWeatherChart(fiveDaysWeather);
   } catch (ex) {
     weatherInfoContainer.classList.add('visually-hidden');
     dateCardContainer.classList.add('visually-hidden');

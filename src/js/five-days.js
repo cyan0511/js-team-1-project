@@ -1,5 +1,6 @@
 import moment from 'moment/moment';
 import { WEATHER_ICON_ENDPOINT } from './api';
+import { startAnimation, stopAnimation } from './animation';
 
 const searchInputEl = document.getElementById('search-input');
 const searchFormEl = document.getElementById('search-form');
@@ -99,15 +100,14 @@ export function renderFiveDaysData(fiveDaysWeather) {
     activeKey = activeLi.dataset.key;
   }
 
-  stopAnimation();
   weatherWrapElement.innerHTML = ul;
 
   data.forEach(d => {
     const btn = document.querySelector(`button[data-key="${d.key}"]`);
     btn.addEventListener('click', e => {
       e.preventDefault();
+      stopAnimation();
       renderMoreInfo(d.key, d.list);
-
       startAnimation({ weather: [{ main: d.weatherName }] });
     });
   });
