@@ -425,6 +425,7 @@ p {
   overflow: hidden;
   transition: opacity 1.5s ease, transform 1.5s ease;
   opacity: 0;
+  display: none;
 }
 
 .today-view,
@@ -434,7 +435,7 @@ p {
 
 .lightning {
   width: 100%;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   background: rgba(0, 0, 0, 0.7);
@@ -442,11 +443,15 @@ p {
 }
 
 .snow {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   background: rgba(0, 0, 0, 0.1);
   z-index: -1;
+}
+
+.animation-container {
+  width: 97%;
 }
 
 /* ivan - favorite city */
