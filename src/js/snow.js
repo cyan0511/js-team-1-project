@@ -8,7 +8,7 @@ export function startSnow() {
 
   c = document.createElement('canvas');
   $ = c.getContext('2d');
-  w = c.width = window.innerWidth;
+  w = c.width = window.innerWidth - 40;
   h = c.height = document.documentElement.scrollHeight;
 
   c.classList.add('snow');

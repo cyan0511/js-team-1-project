@@ -109,8 +109,15 @@ export const lightningStart = () => {
     container.appendChild(canvas);
   } else {
     canvas = document.querySelector('.lightning');
-    canvas.width = canvas.clientWidth;
-    canvas.height = document.documentElement.scrollHeight;
+    if (canvas?.clientWidth) {
+      canvas.width = canvas.clientWidth - 20;
+      canvas.height = document.documentElement.clientHeight - 10;
+    }
+  }
+
+  if (!canvas) {
+    setTimeout(lightningStart, 200);
+    return;
   }
 
   const ctx = canvas.getContext('2d');
@@ -136,15 +143,13 @@ export const lightningStart = () => {
     c.update();
   }
 
-  cancelAnimationFrame(animationId);
+  // cancelAnimationFrame(animationId);
   animationId = requestAnimationFrame(lightningStart);
 
-  window.addEventListener('resize', function () {
+  /*window.addEventListener('resize', function () {
     canvas.width = window.innerWidth;
     canvas.height = window.screen.height;
-  });
-
-  canvas.classList.remove('visually-hidden');
+  });*/
 };
 
 export const lightningStop = () => {
