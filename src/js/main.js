@@ -10,7 +10,7 @@ import { initializeWeatherChart } from './weather-chart.js';
 import { initializeWeatherTime } from './weather-time.js';
 import { startAnimation, stopAnimation } from './animation';
 import { setupToggleChart } from './hide-show';
-import { addToFavorite } from './favorites-cities';
+import { addToFavorite, updateCityList } from './favorites-cities';
 import { renderFiveDaysData } from './five-days';
 
 import 'aos/dist/aos.css';
@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   showLoader();
   initializeQuoteSlider();
   setupToggleChart();
+  updateCityList();
 
   try {
     // Current Location
