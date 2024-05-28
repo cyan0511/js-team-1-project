@@ -98,11 +98,20 @@ class Cloud {
 }
 
 let animationId;
+let canvas;
 
 export const lightningStart = () => {
-  const canvas = document.getElementById('canvas');
-  canvas.width = canvas.clientWidth;
-  canvas.height = document.documentElement.scrollHeight;
+  const container = document.querySelector('.animation-container');
+
+  if (!canvas) {
+    canvas = document.createElement('canvas');
+    canvas.classList.add('lightning');
+    container.appendChild(canvas);
+  } else {
+    canvas = document.querySelector('.lightning');
+    canvas.width = canvas.clientWidth;
+    canvas.height = document.documentElement.scrollHeight;
+  }
 
   const ctx = canvas.getContext('2d');
 
@@ -139,7 +148,10 @@ export const lightningStart = () => {
 };
 
 export const lightningStop = () => {
-  const canvas = document.getElementById('canvas');
+  const canvas = document.querySelector('.lightning');
   cancelAnimationFrame(animationId);
-  canvas.classList.add('visually-hidden');
+  const container = document.querySelector('.animation-container');
+  if (canvas) {
+    container.removeChild(canvas);
+  }
 };
