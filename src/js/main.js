@@ -12,11 +12,11 @@ import { startAnimation, stopAnimation } from './animation';
 import { setupToggleChart } from './hide-show';
 import { addToFavorite, updateCityList } from './favorites-cities';
 import { renderFiveDaysData } from './five-days';
+import { searchGoogleImage } from './google-places-image-api';
 
 import 'aos/dist/aos.css';
 import '../css/more-info.css';
 import '../css/five-days.css';
-
 
 // Initialize Page
 document.addEventListener('DOMContentLoaded', async () => {
@@ -104,7 +104,10 @@ export async function getWeather(...args) {
     weatherInfoContainer.classList.remove('visually-hidden');
     dateCardContainer.classList.remove('visually-hidden');
     const weather = currentWeather.weather[0].main;
-    let image = await searchImage(`${currentWeather.name} ${weather}`);
+    let image = await searchImage(`${currentWeather.name}`);
+    if (!image) {
+      image = await searchGoogleImage(currentWeather.name);
+    }
     if (!image) {
       image = await searchRandomImage(weather);
     }
