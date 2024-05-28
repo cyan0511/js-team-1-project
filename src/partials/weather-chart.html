@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Weather Chart</title>
-    <link rel="stylesheet" href="./css/weather-chart.css" />
-  </head>
-  <body>
-    <div class="chart-container">
-      <canvas id="weatherChart"></canvas>
+<section>
+  <div class="show-chart">
+    <h2 class="show-chart-text">Show Chart</h2>
+    <svg width="28" height="28">
+      <use href="./images/icons.svg#arrow-down"></use>
+    </svg>
+  </div>
+  <div class="chart-container">
+    <div class="hide-chart">
+      <h2 class="hide-chart-text">Hide Chart</h2>
+      <svg width="28" height="28">
+        <use href="./images/icons.svg#arrow-up"></use>
+      </svg>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="./js/weather-chart.js"></script>
-  </body>
-</html>
+    <canvas id="weatherChart"></canvas>
+  </div>
+</section>

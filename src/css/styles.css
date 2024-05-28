@@ -87,6 +87,11 @@ input:hover {
 }
 
 h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 p {
   margin: 0;
 }
@@ -98,7 +103,6 @@ p {
 
 .date-card {
   background-color: rgba(16, 33, 54, 0.6);
-
   border-radius: 0px 34px 0px 0px;
   width: 630;
   height: 278px;
@@ -254,11 +258,9 @@ p {
   color: var(--white);
   display: flex;
   flex-direction: column;
-
   width: 340px;
   flex-shrink: 0;
-
-  margin: 0 110 20 0;
+  margin: 0 100 50 0;
   align-items: end;
 }
 
@@ -269,6 +271,7 @@ p {
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.88px;
+  margin-bottom: 30px;
 }
 
 .quote-author {
@@ -278,7 +281,6 @@ p {
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.72px;
-  margin-top: 30px;
 }
 
 .input-container {
@@ -339,7 +341,7 @@ p {
   left: 26px;
 }
 
-@media (max-height: 650px) {
+@media screen and (max-height: 650px) {
   .quote-container {
     display: none;
   }
@@ -428,4 +430,57 @@ p {
 .today-view,
 .five-day-view {
   transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+.lightning {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: -1;
+}
+
+/* ivan - favorite city */
+.favorite-container {
+  display: flex;
+  justify-content: center;
+}
+.favorite-city-list {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 500px;
+  overflow-x: scroll;
+}
+.favorite-city-list::-webkit-scrollbar {
+  display: none;
+}
+.favorite-list-item {
+  list-style: none;
+  background-color: rgba(16, 33, 54, 0.5);
+  display: flex;
+  gap: 10px;
+  padding: 7px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.favorite-list-link {
+  color: var(--white);
+  text-decoration: underline;
+  font-weight: bold;
+  padding: 0 5px 0 5px;
+  cursor: pointer;
+}
+.favorite-list-close {
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background-image: url('../images/close.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 20px;
+  border-radius: 50%;
+  cursor: pointer;
 }

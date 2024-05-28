@@ -1,35 +1,46 @@
 .more-info h2,
 .more-info h3,
+.more-info h4,
+.more-info h5,
+.more-info h6,
 .more-info ul,
 .more-info li,
+.more-info img,
 .more-info p {
   margin: 0;
   padding: 0;
 }
 
 .more-info {
-  width: 984px;
-  height: 380px;
-  padding: 40px;
+  margin: 15px;
   border-radius: 34px;
   background: rgba(16, 33, 54, 0.8);
   box-shadow: 0px 8px 43px 0px rgba(16, 33, 54, 0.6);
-  margin-bottom: 100px;
 }
 
 .more-info li {
   list-style-type: none;
 }
 
+.more-info .five-days-view-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  list-style-type: none;
+  margin-bottom: 20px;
+}
+
 .more-info .more-info-list {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
   list-style-type: none;
 }
 
 .more-info .more-info-item {
-  padding: 15px 19px;
+  padding: 15px 15px;
   border-radius: 25px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   width: 120px;
@@ -100,4 +111,8 @@
   align-items: center;
   justify-content: center;
   margin-right: 15px;
+}
+
+.more-info-container {
+  padding: 15px;
 }

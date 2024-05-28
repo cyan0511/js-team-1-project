@@ -1,11 +1,44 @@
 import { Notify } from 'notiflix';
-import { fetchCurrentWeather } from './weather-api';
-import { renderWeatherData } from './today';
+import AOS from 'aos';
+import moment from 'moment';
+import { searchImage, searchRandomImage } from './pixabay-api';
+import { fetchCurrentWeather, fetchFiveDaysWeather } from './weather-api';
+import { renderTodayWeatherData } from './today';
 import { getCurrentLocation } from './current-location';
-import { searchImage } from './google-places-image-api'; 
+import { initializeQuoteSlider } from './quote-slider.js';
+import { initializeWeatherChart } from './weather-chart.js';
+import { initializeWeatherTime } from './weather-time.js';
+import { startAnimation, stopAnimation } from './animation';
+import { setupToggleChart } from './hide-show';
+import { addToFavorite, updateCityList } from './favorites-cities';
+import { renderFiveDaysData } from './five-days';
 
-const elQuote = document.querySelector('.quote');
-const elAuthor = document.querySelector('.quote-author');
+import 'aos/dist/aos.css';
+import '../css/more-info.css';
+import '../css/five-days.css';
+
+
+// Initialize Page
+document.addEventListener('DOMContentLoaded', async () => {
+  showLoader();
+  initializeQuoteSlider();
+  setupToggleChart();
+  updateCityList();
+
+  try {
+    // Current Location
+    const {
+      coords: { longitude, latitude },
+    } = await getCurrentLocation();
+    void getWeather(longitude, latitude);
+  } catch (ex) {
+    Notify.failure(ex);
+    weatherInfoContainer.classList.add('visually-hidden');
+    changeBackground(await searchRandomImage(currentWeather?.weather[0].main));
+  } finally {
+    hideLoader();
+  }
+});
 
 const btnToday = document.querySelector('#btn-today');
 const btnFiveDays = document.querySelector('#btn-five-days');
@@ -14,23 +47,28 @@ const elTodayView = document.querySelector('.today-view');
 const elFiveDayView = document.querySelector('.five-day-view');
 
 const weatherInfoContainer = document.querySelector('.weather-info-container');
+const dateCardContainer = document.querySelector('.date-card-container');
 const searchForm = document.getElementById('search-form');
 const loaderContainer = document.querySelector('.loader-container');
+const cityElement = document.querySelector('.city');
+const favoriteBtn = document.querySelector('.btn-favourite');
 
-btnToday.addEventListener('click', () => toggleView());
-btnFiveDays.addEventListener('click', () => toggleView());
+favoriteBtn.addEventListener('click',()=> addToFavorite());
+
+let currentWeather;
+
+btnToday.addEventListener('click', () => {
+  toggleView();
+  startAnimation(currentWeather);
+});
+btnFiveDays.addEventListener('click', () => {
+  toggleView();
+  stopAnimation();
+});
 
 function toggleView() {
   elTodayView.classList.toggle('visually-hidden');
   elFiveDayView.classList.toggle('visually-hidden');
-  resetElements();
-  typeText();
-}
-
-function resetElements() {
-  index = 0;
-  elQuote.innerHTML = '';
-  elAuthor.innerHTML = '';
 }
 
 function changeBackground(newBg) {
@@ -41,29 +79,12 @@ function changeBackground(newBg) {
     ), url(${newBg})`;
 }
 
-// TODO: use API for random quotes
-const text =
-  "Who cares about the clouds when we're together? Just sing a song and bring the sunny weather.";
-const author = 'Dale Evans';
-const delay = 50; // Delay between each character (in milliseconds)
-let index = 0;
-
-function typeText() {
-  if (index < text.length) {
-    elQuote.innerHTML += text.charAt(index);
-    index++;
-    setTimeout(typeText, delay);
-  } else {
-    elAuthor.innerHTML = author;
-  }
-}
-
 searchForm.addEventListener('submit', async event => {
   event.preventDefault();
   const city = document.getElementById('search-input').value.trim();
   if (city) {
     try {
-      await getCurrentWeather(city);
+      void getWeather(city);
     } catch (error) {
       console.error(error);
       Notify.failure('City not found.');
@@ -71,21 +92,33 @@ searchForm.addEventListener('submit', async event => {
   }
 });
 
-async function getCurrentWeather(...args) {
+export async function getWeather(...args) {
   showLoader();
+  stopAnimation();
   try {
-    const data = await fetchCurrentWeather(...args);
-    renderWeatherData(data);
+    // today view
+    currentWeather = await fetchCurrentWeather(...args);
+    renderTodayWeatherData(currentWeather);
+    // Weather Time
+    void initializeWeatherTime(currentWeather);
     weatherInfoContainer.classList.remove('visually-hidden');
-    try {
-      const bgImage = await searchImage(data.name);
-      changeBackground(bgImage);
-    } catch (imageError) {
-      console.error('Error fetching image:', imageError.response ? imageError.response.data : imageError.message);
-      Notify.failure('Failed to fetch image.');
+    dateCardContainer.classList.remove('visually-hidden');
+    const weather = currentWeather.weather[0].main;
+    let image = await searchImage(`${currentWeather.name} ${weather}`);
+    if (!image) {
+      image = await searchRandomImage(weather);
     }
+    changeBackground(image);
+    startAnimation(currentWeather);
+
+    // five days view
+    const fiveDaysWeather = await fetchFiveDaysWeather(...args);
+    window.fiveDaysWeather = fiveDaysWeather;
+    renderFiveDaysData(fiveDaysWeather);
+    void initializeWeatherChart(fiveDaysWeather);
   } catch (ex) {
     weatherInfoContainer.classList.add('visually-hidden');
+    dateCardContainer.classList.add('visually-hidden');
     Notify.failure('City not found.');
   } finally {
     hideLoader();
@@ -104,23 +137,16 @@ Notify.init({
   position: 'left-top',
 });
 
-document.addEventListener('DOMContentLoaded', async () => {
-  resetElements();
-  typeText();
-  showLoader();
+AOS.init();
 
-  try {
-    const { coords: { longitude, latitude } } = await getCurrentLocation();
-    await getCurrentWeather(longitude, latitude);
-  } catch (locationError) {
-    Notify.failure(locationError.message);
-    try {
-      const bgImage = await searchImage('sunset');
-      changeBackground(bgImage);
-    } catch (imageError) {
-      console.error('Error fetching random image:', imageError.response ? imageError.response.data : imageError.message);
-    }
-  } finally {
-    hideLoader();
-  }
-});
+window.moment = moment;
+window.stopAnimation = stopAnimation;
+window.startAnimation = startAnimation;
+
+window.makeThunderStorm = () => {
+  startAnimation({ weather: [{ main: 'Thunderstorm' }] });
+};
+
+window.makeRain = () => {
+  startAnimation({ weather: [{ main: 'Rain' }] });
+};

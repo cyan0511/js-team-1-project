@@ -337,5 +337,15 @@
                 d="M7.65625 14.1016C7.65625 13.778 7.39391 13.5156 7.07031 13.5156H3.55469C3.23109 13.5156 2.96875 13.778 2.96875 14.1016C2.96875 14.4252 3.23109 14.6875 3.55469 14.6875H7.07031C7.39395 14.6875 7.65625 14.4252 7.65625 14.1016Z"
                 fill="white" fill-opacity="0.54" />
         </symbol>
+        <!-- Arrow Down -->
+        <symbol id="arrow-down" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="14" fill="white" fill-opacity="0.2"/>
+            <path d="M10 12L14 16L18 12" stroke="white" stroke-width="1.5"/>
+        </symbol>
+        <!-- Arrow Up -->
+        <symbol id="arrow-up" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="14" fill="white" fill-opacity="0.2"/>
+            <path d="M10 16L14 12L18 16" stroke="white" stroke-width="1.5"/>
+        </symbol>
     </defs>
 </svg>
