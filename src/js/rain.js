@@ -1,12 +1,19 @@
 let increment = 0;
 
 export const makeItRain = () => {
+  const container = document.querySelector('.animation-container');
+
+  const divFront = document.createElement('div');
+  const divBack = document.createElement('div');
+  divFront.classList.add('rain','front-row');
+  divBack.classList.add('rain', 'back-row');
+  container.appendChild(divFront);
+  container.appendChild(divBack);
+
   //clear out everything
+
   const rainElements = document.querySelectorAll('.rain');
-  // Iterate over each element and clear its content
-  rainElements.forEach(element => {
-    element.innerHTML = '';
-  });
+
 
   let drops = '';
   let backDrops = '';
@@ -22,7 +29,7 @@ export const makeItRain = () => {
     increment += randoFiver;
     //add in a new raindrop with various randomizations to certain CSS properties
     drops += `<div class="drop" style="
-        left: ${increment}%; 
+        left: ${increment}%;
         bottom: ${randoFiver + randoFiver - 1 + 100}%;
         animation-delay: 0.${randoHundo}s;
         animation-duration: 0.5${randoHundo}s;">
@@ -71,3 +78,4 @@ export function rainStop() {
 
   increment = 101;
 }
+

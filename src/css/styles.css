@@ -441,6 +441,14 @@ p {
   z-index: -1;
 }
 
+.snow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: -1;
+}
+
 /* ivan - favorite city */
 .favorite-city-list::-webkit-scrollbar {
   display: none;
