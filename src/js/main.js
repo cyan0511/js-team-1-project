@@ -10,24 +10,27 @@ import { initializeWeatherChart } from './weather-chart.js';
 import { initializeWeatherTime } from './weather-time.js';
 import { startAnimation, stopAnimation } from './animation';
 import { setupToggleChart } from './hide-show';
+import { addToFavorite, updateCityList } from './favorites-cities';
+import { renderFiveDaysData } from './five-days';
 
 import 'aos/dist/aos.css';
 import '../css/more-info.css';
 import '../css/five-days.css';
-import { renderFiveDaysData } from './five-days';
+
 
 // Initialize Page
 document.addEventListener('DOMContentLoaded', async () => {
   showLoader();
   initializeQuoteSlider();
   setupToggleChart();
+  updateCityList();
 
   try {
     // Current Location
     const {
       coords: { longitude, latitude },
     } = await getCurrentLocation();
-    void getCurrentWeather(longitude, latitude);
+    void getWeather(longitude, latitude);
   } catch (ex) {
     Notify.failure(ex);
     weatherInfoContainer.classList.add('visually-hidden');
@@ -48,6 +51,9 @@ const dateCardContainer = document.querySelector('.date-card-container');
 const searchForm = document.getElementById('search-form');
 const loaderContainer = document.querySelector('.loader-container');
 const cityElement = document.querySelector('.city');
+const favoriteBtn = document.querySelector('.btn-favourite');
+
+favoriteBtn.addEventListener('click',()=> addToFavorite());
 
 let currentWeather;
 
@@ -78,7 +84,7 @@ searchForm.addEventListener('submit', async event => {
   const city = document.getElementById('search-input').value.trim();
   if (city) {
     try {
-      void getCurrentWeather(city);
+      void getWeather(city);
     } catch (error) {
       console.error(error);
       Notify.failure('City not found.');
@@ -86,7 +92,7 @@ searchForm.addEventListener('submit', async event => {
   }
 });
 
-async function getCurrentWeather(...args) {
+export async function getWeather(...args) {
   showLoader();
   stopAnimation();
   try {
