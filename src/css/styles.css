@@ -442,12 +442,11 @@ p {
 }
 
 /* ivan - favorite city */
-.favorite-container{
+.favorite-container {
   display: flex;
   justify-content: center;
-
 }
-.favorite-city-list{
+.favorite-city-list {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -457,21 +456,23 @@ p {
 .favorite-city-list::-webkit-scrollbar {
   display: none;
 }
-.favorite-list-item{
+.favorite-list-item {
   list-style: none;
-  background-color: rgba(16, 33, 54, 0.50);
+  background-color: rgba(16, 33, 54, 0.5);
   display: flex;
   gap: 10px;
   padding: 7px;
   border-radius: 20px;
+  white-space: nowrap;
 }
-.favorite-list-link{
+.favorite-list-link {
   color: var(--white);
   text-decoration: underline;
   font-weight: bold;
   padding: 0 5px 0 5px;
+  cursor: pointer;
 }
-.favorite-list-close{
+.favorite-list-close {
   background: none;
   border: none;
   outline: none;
@@ -483,4 +484,3 @@ p {
   border-radius: 50%;
   cursor: pointer;
 }
-

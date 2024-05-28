@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const {
       coords: { longitude, latitude },
     } = await getCurrentLocation();
-    void getCurrentWeather(longitude, latitude);
+    void getWeather(longitude, latitude);
   } catch (ex) {
     Notify.failure(ex);
     weatherInfoContainer.classList.add('visually-hidden');
@@ -84,7 +84,7 @@ searchForm.addEventListener('submit', async event => {
   const city = document.getElementById('search-input').value.trim();
   if (city) {
     try {
-      void getCurrentWeather(city);
+      void getWeather(city);
     } catch (error) {
       console.error(error);
       Notify.failure('City not found.');
@@ -92,7 +92,7 @@ searchForm.addEventListener('submit', async event => {
   }
 });
 
-async function getCurrentWeather(...args) {
+export async function getWeather(...args) {
   showLoader();
   stopAnimation();
   try {

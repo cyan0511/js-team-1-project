@@ -1,5 +1,6 @@
 import { Notify } from "notiflix";
 import { fetchCurrentWeather } from './weather-api';
+import { getWeather } from './main';
 
 const searchData = document.querySelector('#search-input');
 const favoriteCityList = document.querySelector('.favorite-city-list');
@@ -49,8 +50,35 @@ export function updateCityList(){
     removeButtons.forEach(button => {
         button.addEventListener('click', removeFavorite);
     });
+
+    const favoriteListItems = document.querySelectorAll('.favorite-list-item');
+    favoriteListItems.forEach(li => {
+        const cityElement = li.querySelector('p');
+        li.addEventListener('click', (e) => {
+            e.preventDefault();
+            search(cityElement.innerText)
+        });
+    });
 }
+
+function search(city) {
+    const searchInput = document.getElementById('search-input');
+    const value = toTitleCase(city);
+    searchInput.value = value;
+    void getWeather(value);
+}
+
+function toTitleCase(str) {
+    return str.replace(
+      /\w\S*/g,
+      function(txt) {
+          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      }
+    );
+}
+
 export function removeFavorite(event) {
+    event.stopPropagation();
     const index = event.target.getAttribute('data-index');
     let search_array = JSON.parse(localStorage.getItem('city')) || [];
     search_array.splice(index, 1);
