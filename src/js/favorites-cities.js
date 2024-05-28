@@ -3,7 +3,34 @@ import { fetchCurrentWeather } from './weather-api';
 import { getWeather } from './main';
 
 const searchData = document.querySelector('#search-input');
-const favoriteCityList = document.querySelector('.favorite-city-list');
+
+
+// next button function
+
+
+const nextBtn = document.querySelector('.nextBtn');
+const itemsPerPage = 4;
+
+let currentIndex = 0;
+
+
+nextBtn.addEventListener('click', () => {
+    const favoriteCityList = document.querySelector('.favorite-city-list');
+    const items = Array.from(favoriteCityList.children);
+    const totalItems = items.length;
+    currentIndex += itemsPerPage;
+    if (currentIndex >= totalItems) {
+        currentIndex = 0;
+    }
+    updateListPosition(favoriteCityList);
+});
+
+function updateListPosition(list) {
+    const offset = -currentIndex * 100 / itemsPerPage;
+
+    list.style.transform = `translateX(${offset}%)`;
+    list.style.transition = 'transform 0.3s ease';
+}
 
 export function addToFavorite() {
     const searchValue = searchData.value.trim();
@@ -29,12 +56,17 @@ export function addToFavorite() {
         Notify.info("Added to favorites!");
     })
     .catch(error => {
+        if (error.response?.status === 404 ) {
+            Notify.info("There is no such city!");
+            return;
+        }
         Notify.info(error.message || 'An error occurred while fetching the weather data.');
         console.error('Fetch error:', error);
     });
 }
 
 export function updateCityList(){
+    const favoriteCityList = document.querySelector('.favorite-city-list');
     const storedCities = JSON.parse(localStorage.getItem('city')) || [];
     favoriteCityList.innerHTML = '';
     storedCities.forEach((city, i) =>{
