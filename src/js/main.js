@@ -153,3 +153,8 @@ window.makeThunderStorm = () => {
 window.makeRain = () => {
   startAnimation({ weather: [{ main: 'Rain' }] });
 };
+
+window.makeSnow = () => {
+  startAnimation({ weather: [{ main: 'Snow' }] });
+};
+
