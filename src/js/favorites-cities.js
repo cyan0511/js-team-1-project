@@ -5,6 +5,35 @@ import { getWeather } from './main';
 const searchData = document.querySelector('#search-input');
 const favoriteCityList = document.querySelector('.favorite-city-list');
 
+
+// next button function
+
+
+const nextBtn = document.querySelector('.nextBtn');
+const list = favoriteCityList;
+const items = Array.from(list.children);
+const itemsPerPage = 4;
+const totalItems = items.length;
+let currentIndex = 0;
+
+
+nextBtn.addEventListener('click', () => {
+
+    currentIndex += itemsPerPage;
+    if (currentIndex >= totalItems) {
+        currentIndex = 0;
+        console.log('hello');
+    }
+    updateListPosition();
+});
+
+function updateListPosition() {
+    const offset = -currentIndex * 100 / itemsPerPage;
+    
+    list.style.transform = `translateX(${offset}%)`;
+    list.style.transition = 'transform 0.3s ease';
+}
+
 export function addToFavorite() {
     const searchValue = searchData.value.trim();
 
