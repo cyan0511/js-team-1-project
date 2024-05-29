@@ -1,39 +1,43 @@
 import { Notify } from 'notiflix';
 import AOS from 'aos';
+import moment from 'moment';
 import { searchImage, searchRandomImage } from './pixabay-api';
-import { fetchCurrentWeather } from './weather-api';
-import { renderWeatherData } from './today';
+import { fetchCurrentWeather, fetchFiveDaysWeather } from './weather-api';
+import { renderTodayWeatherData } from './today';
 import { getCurrentLocation } from './current-location';
 import { initializeQuoteSlider } from './quote-slider.js';
 import { initializeWeatherChart } from './weather-chart.js';
 import { initializeWeatherTime } from './weather-time.js';
 import { startAnimation, stopAnimation } from './animation';
-
+import { setupToggleChart } from './hide-show';
+import { addToFavorite, updateCityList } from './favorites-cities';
+import { renderFiveDaysData } from './five-days';
+import { searchGoogleImage } from './google-places-image-api';
 
 import 'aos/dist/aos.css';
 import '../css/more-info.css';
 import '../css/five-days.css';
 
 // Initialize Page
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   showLoader();
   initializeQuoteSlider();
-  initializeWeatherChart();
+  setupToggleChart();
+  updateCityList();
 
-  // Current Location
-  getCurrentLocation()
-    .then(({ coords: { longitude, latitude } }) => {
-      getCurrentWeather(longitude, latitude).then(data => {
-        initializeWeatherTime(data.name);
-      });
-    })
-    .catch(Notify.failure)
-    .then(async () => {
-      changeBackground(
-        await searchRandomImage(currentWeather?.weather[0].main)
-      );
-    })
-    .finally(hideLoader);
+  try {
+    // Current Location
+    const {
+      coords: { longitude, latitude },
+    } = await getCurrentLocation();
+    void getWeather(longitude, latitude);
+  } catch (ex) {
+    Notify.failure(ex);
+    weatherInfoContainer.classList.add('visually-hidden');
+    changeBackground(await searchRandomImage(currentWeather?.weather[0].main));
+  } finally {
+    hideLoader();
+  }
 });
 
 const btnToday = document.querySelector('#btn-today');
@@ -43,8 +47,13 @@ const elTodayView = document.querySelector('.today-view');
 const elFiveDayView = document.querySelector('.five-day-view');
 
 const weatherInfoContainer = document.querySelector('.weather-info-container');
+const dateCardContainer = document.querySelector('.date-card-container');
 const searchForm = document.getElementById('search-form');
 const loaderContainer = document.querySelector('.loader-container');
+const cityElement = document.querySelector('.city');
+const favoriteBtn = document.querySelector('.btn-favourite');
+
+favoriteBtn.addEventListener('click',()=> addToFavorite());
 
 let currentWeather;
 
@@ -75,9 +84,7 @@ searchForm.addEventListener('submit', async event => {
   const city = document.getElementById('search-input').value.trim();
   if (city) {
     try {
-      getCurrentWeather(city).then(data => {
-        initializeWeatherTime(city); // Pass the searched city
-      });
+      void getWeather(city);
     } catch (error) {
       console.error(error);
       Notify.failure('City not found.');
@@ -85,31 +92,40 @@ searchForm.addEventListener('submit', async event => {
   }
 });
 
-function getCurrentWeather(...args) {
+export async function getWeather(...args) {
   showLoader();
   stopAnimation();
-  return fetchCurrentWeather(...args)
-    .then(async data => {
-      currentWeather = data;
-      renderWeatherData(data);
-      weatherInfoContainer.classList.remove('visually-hidden');
-      const weather = currentWeather.weather[0].main;
-      let image = await searchImage(`${data.name} ${weather}`);
-      if (!image) {
-        image = await searchRandomImage(weather);
-      }
-      changeBackground(image);
-      startAnimation(currentWeather);
-      // Weather Time
-      initializeWeatherTime(data.name);
-      return data;
-    })
-    .catch(ex => {
-      weatherInfoContainer.classList.add('visually-hidden');
-      Notify.failure('City not found.');
-      throw ex;
-    })
-    .finally(hideLoader);
+  try {
+    // today view
+    currentWeather = await fetchCurrentWeather(...args);
+    renderTodayWeatherData(currentWeather);
+    // Weather Time
+    void initializeWeatherTime(currentWeather);
+    weatherInfoContainer.classList.remove('visually-hidden');
+    dateCardContainer.classList.remove('visually-hidden');
+    const weather = currentWeather.weather[0].main;
+    let image = await searchImage(`${currentWeather.name}`);
+    if (!image) {
+      image = await searchGoogleImage(currentWeather.name);
+    }
+    if (!image) {
+      image = await searchRandomImage(weather);
+    }
+    changeBackground(image);
+    startAnimation(currentWeather);
+
+    // five days view
+    const fiveDaysWeather = await fetchFiveDaysWeather(...args);
+    window.fiveDaysWeather = fiveDaysWeather;
+    renderFiveDaysData(fiveDaysWeather);
+    void initializeWeatherChart(fiveDaysWeather);
+  } catch (ex) {
+    weatherInfoContainer.classList.add('visually-hidden');
+    dateCardContainer.classList.add('visually-hidden');
+    Notify.failure('City not found.');
+  } finally {
+    hideLoader();
+  }
 }
 
 function showLoader() {
@@ -126,5 +142,19 @@ Notify.init({
 
 AOS.init();
 
+window.moment = moment;
 window.stopAnimation = stopAnimation;
 window.startAnimation = startAnimation;
+
+window.makeThunderStorm = () => {
+  startAnimation({ weather: [{ main: 'Thunderstorm' }] });
+};
+
+window.makeRain = () => {
+  startAnimation({ weather: [{ main: 'Rain' }] });
+};
+
+window.makeSnow = () => {
+  startAnimation({ weather: [{ main: 'Snow' }] });
+};
+

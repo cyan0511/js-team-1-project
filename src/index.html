@@ -17,128 +17,140 @@
 </head>
 
 <body class="splat-toggle">
-<header class="header">
-  <div class="container">
-    <nav class="nav"></nav>
-  </div>
-</header>
-<main>
-
-  <canvas id="canvas" class="lightning visually-hidden"></canvas>
-
-  <div class="rain front-row"></div>
-  <div class="rain back-row"></div>
-  <div class="loader-container visually-hidden">
-    <div class="loader"></div>
-  </div>
-  <section>
+  <header class="header">
     <div class="container">
-      <div class="sqr1"></div>
-      <div class="sqr2"></div>
+      <nav class="nav"></nav>
+    </div>
+  </header>
+  <main>
 
-      <div class="input-container">
-        <form class="search__form" id="search-form">
-          <svg width="24" height="24" class="input-geolocation">
-            <use href="./images/icons.svg#location"></use>
-          </svg>
-          <input id="search-input" value="" name="city" placeholder="Enter the city" />
-          <button class="btn-favourite" type="button">
-            <svg width="24" height="24" class="fovourite-icon">
-              <use href="./images/icons.svg#star"></use>
+    <div class='animation-container'>
+    </div>
+
+    <div class="loader-container visually-hidden">
+      <div class="loader"></div>
+    </div>
+    <section>
+      <div class="container">
+        <div class="sqr1"></div>
+        <div class="sqr2"></div>
+
+        <div class="input-container">
+          <form class="search__form" id="search-form">
+            <svg width="24" height="24" class="input-geolocation">
+              <use href="./images/icons.svg#location"></use>
             </svg>
-          </button>
-        </form>
-      </div>
-
-      <!-- adding mobile div --> <div class="mobile-view">
-      <div class="today-view">
-        <div class="weather-info-container">
-          <div data-aos="fade-left" data-aos-delay="400" data-aos-duration="600">
-          <div class="weather-info">
-            <img class="weather-icon" alt="Weather Icon" width="35" height="35" />
-            <!-- <svg width="35" height="35" class="cloudy">
-                <use href="images/icons.svg#default"></use>
-              </svg> -->
-            <div class="city">Manila, PH</div>
-            <div class="temp-wrapper">
-            <div class="current-temp">45</div>
-            <div class="min-max-temp">
-              <p class="info-item">
-                min
-                <span class="min-temp">20°</span>
-              </p>
-              <svg width="3" height="45">
-                <use href="./images/icons.svg#line1"></use>
+            <input id="search-input" value="" name="city" placeholder="Enter the city" />
+            <button class="btn-favourite" type="button">
+              <svg width="24" height="24" class="fovourite-icon">
+                <use href="./images/icons.svg#star"></use>
               </svg>
-              <p class="info-item">
-                max
-                <span class="max-temp">48°</span>
-              </p>
-            </div>
-          </div></div>
-
-          <div class="buttons-toggle">
-            <button class="today" type="button">TODAY</button>
-            <button id="btn-five-days" class="five-days button-active" type="button">
-              5 DAYS
             </button>
+          </form>
+        </div>
+
+        <div class="favorite-container">
+          <div class="favorite-wrapper">
+          <ul class="favorite-city-list">
+          </ul>
+        </div>
+        <div class="favorite-next">
+          <button class="nextBtn" type="button"></button>
+        </div>
+        </div>
+
+        <div class="today-view">
+          <div class="weather-info-container visually-hidden">
+            <div data-aos="fade-left" data-aos-delay="400" data-aos-duration="600">
+              <div class="weather-info">
+                <img class="weather-icon" alt="Weather Icon" width="35" height="35" />
+                <!-- <svg width="35" height="35" class="cloudy">
+                  <use href="images/icons.svg#default"></use>
+                </svg> -->
+                <div class="city">Manila, PH</div>
+                <div class="temp-wrapper">
+                <div class="current-temp">45</div>
+                <div class="min-max-temp">
+                  <p class="info-item">
+                    min
+                    <span class="min-temp">20°</span>
+                  </p>
+                  <svg width="3" height="45">
+                    <use href="./images/icons.svg#line1"></use>
+                  </svg>
+                  <p class="info-item">
+                    max
+                    <span class="max-temp">48°</span>
+                  </p>
+                </div>
+              </div>
+              </div>
+              <div class="buttons-toggle">
+                <button class="today" type="button">TODAY</button>
+                <button id="btn-five-days" class="five-days button-active" type="button">
+                  5 DAYS
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Weather Date & Time -->
+
+          <div class="date-card-container visually-hidden">
+            <div class="date-card" data-aos="fade-right" data-aos-delay="400" data-aos-duration="600">
+              <div class="date-day">
+                <h1 class="date" id="current-date">0<sup>th</sup>day</h1>
+                <!-- <div class="other-info"> -->
+                <!-- adding div for tablet view --> <div class="tablet-wrapper">
+                <!-- adding div for mobile view --> <div class="month-time-info">
+                  <p class="month" id="current-month">Month</p>
+                  <svg width="16" height="22" class="sunrise">
+                    <use href="./images/icons.svg#line1"></use>
+                  </svg>
+                  <p id="current-time">00:00:00</p>
+                <!-- adding div to separate on mobile view --> <div class="mobile-other-info">
+                <svg width="16" height="22">
+                    <use href="images/icons.svg#sunrise"></use>
+                  </svg>
+                  <p id="sunrise-time">00:00</p>
+                <!-- separator --> <div class="separator-index"></div>
+                  <svg width="16" height="22">
+                    <use href="./images/icons.svg#line1"></use>
+                  </svg>
+                  <svg width="16" height="22">
+                    <use href="images/icons.svg#sunset"></use>
+                  </svg>
+                  <p id="sunset-time">00:00</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Quote Slider -->
+          <div class="quote-container">
+            <svg class="icon-quote" width="35" height="32">
+              <use href="./images/icons.svg#quote"></use>
+            </svg>
+            <div id="quote" class="quote"></div>
+            <div id="quote-author" class="quote-author"></div>
           </div>
         </div>
-        </div>
 
-        <!-- Weather Date & Time -->
-        <div class="date-card" data-aos="fade-right" data-aos-delay="400" data-aos-duration="600">
-        <div class="date-day">
-            <h1 class="date" id="current-date">0<sup>th</sup>day</h1>
-            <!-- <div class="other-info"> -->
-              <!-- adding div for tablet view --> <div class="tablet-wrapper">
-              <!-- adding div for mobile view --> <div class="month-time-info">
-              <p class="month" id="current-month">Month</p>
-              <div class="separator-index"></div>
-              <p id="current-time">00:00:00</p>
-              </div>
-              <!-- adding div to separate on mobile view --> <div class="mobile-other-info">
-                <svg width="20" height="20">
-                  <use href="images/icons.svg#sunrise"></use>
-                </svg>
-              <p id="sunrise-time">00:00</p>
-              <!-- separator --> <div class="separator-index"></div>
-                <svg width="20" height="20">
-                  <use href="images/icons.svg#sunset"></use>
-                </svg>
-              <p id="sunset-time">00:00</p>
-            </div>
-            </div>
-          <!-- </div> -->
-        </div>
-        <!-- end of adding separator  --> </div>
-<!-- try -->
-        <!-- Quote Slider -->
-        <div class="quote-container" data-aos="fade-left" data-aos-delay="400" data-aos-duration="600">
-          <svg class="icon-quote">
-            <use href="./images/icons.svg#quote"></use>
-          </svg>
-          <div id="quote" class="quote"></div>
-          <div id="quote-author" class="quote-author"></div>
+        <div class="five-day-view visually-hidden">
+          <div class="buttons-toggle">
+            <button id="btn-today" class="today button-active" type="button">
+              TODAY
+            </button>
+            <button class="five-days" type="button">5 DAYS</button>
+          </div>
+          <div class="city-fiveday-view"></div>
+          <include src="./partials/more-info.html"></include>
+          <include src="./partials/weather-chart.html"></include>
         </div>
       </div>
-      <!-- end of mobile div --> </div>
-
-      <div class="five-day-view visually-hidden">
-        <div class="buttons-toggle">
-          <button id="btn-today" class="today button-active" type="button">
-            TODAY
-          </button>
-          <button class="five-days" type="button">5 DAYS</button>
-        </div>
-        <include src="./partials/more-info.html"></include>
-        <include src="./partials/weather-chart.html"></include>
-      </div>
-    </div>
-  </section>
-</main>
-<footer class="footer"></footer>
-<script type="module" src="./js/main.js"></script>
+    </section>
+  </main>
+  <footer class="footer"></footer>
+  <script type="module" src="./js/main.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 import { WEATHER_ICON_ENDPOINT } from './api';
 
-export function renderWeatherData(data) {
+export function renderTodayWeatherData(data) {
   document.querySelector(
     '.city'
   ).textContent = `${data.name}, ${data.sys.country}`;

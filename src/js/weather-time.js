@@ -33,9 +33,9 @@ function formatTime(unixTime, timezone) {
 }
 
 // Function to initialize and display the weather time information
-export async function initializeWeatherTime(city) {
+export async function initializeWeatherTime(data) {
   try {
-    const data = await fetchWeatherTime(city);
+    // const data = await fetchWeatherTime(city);
     const timezone = data.timezone;
 
     // Clear previous time interval

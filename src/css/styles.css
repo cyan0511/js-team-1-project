@@ -21,7 +21,6 @@ body {
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center;
-  overflow-x: hidden;
 }
 
 input:hover {
@@ -87,7 +86,12 @@ input:hover {
   }
 }
 
-h1, h2, h3,h4, h5, h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 p {
   margin: 0;
 }
@@ -253,7 +257,7 @@ p {
 
 
 .month { /* Fixed for mobile*/
-  width: 69.96px; 
+  width: 69.96px;
   display: flex;
   justify-content: end;
 }
@@ -287,7 +291,7 @@ p {
 
 @media screen and (min-width: 1280px) {
   .weather-info {
-  width: 450px; 
+  width: 450px;
   height: 300px;
   border-radius: 34px 0px 0px 34px;
   }
@@ -695,6 +699,7 @@ p {
   overflow: hidden;
   transition: opacity 1.5s ease, transform 1.5s ease;
   opacity: 0;
+  display: none;
 }
 
 .mobile-view {
@@ -733,15 +738,97 @@ p {
 
 .today-view,
 .five-day-view {
-  transition: opacity 1.5s ease, transform 1.5s ease;  
+  transition: opacity 1.5s ease, transform 1.5s ease;
 }
 
 .lightning {
   width: 100%;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   background: rgba(0, 0, 0, 0.7);
+  z-index: -1;
 }
 
+.snow {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: -1;
+}
 
+.animation-container {
+  width: 97%;
+}
+
+/* ivan - favorite city */
+.favorite-city-list::-webkit-scrollbar {
+  display: none;
+}
+.favorite-list-item {
+  list-style: none;
+  background-color: rgba(16, 33, 54, 0.5);
+  display: flex;
+  gap: 10px;
+  padding: 7px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.favorite-list-link {
+  color: var(--white);
+  text-decoration: underline;
+  font-weight: bold;
+  padding: 0 5px 0 5px;
+  cursor: pointer;
+}
+.favorite-list-close {
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background-image: url('../images/close.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+/* next button */
+.favorite-container {
+  width: 540px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.favorite-wrapper {
+  overflow: hidden;
+}
+.favorite-city-list {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+  gap: 10px;
+}
+
+.favorite-city-list li {
+  /* flex: 25%; */
+  list-style: none;
+  padding: 5px;
+  box-sizing: border-box;
+  text-align: center;
+}
+.nextBtn {
+  background-color: rgba(255, 255, 255, 0.50);
+  border: none;
+  outline: none;
+  background-image: url('../images/next.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 20px;
+}
