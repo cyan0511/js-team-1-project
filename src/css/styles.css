@@ -21,6 +21,7 @@ body {
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center;
+  overflow-x: hidden; /* Hide horizontal scrollbars */
 }
 
 input:hover {
@@ -530,6 +531,9 @@ p {
   .input-container {
     padding-top: 60px;
   }
+  .animation-container {
+    width: 93%;
+  }
 }
 
 @media screen and (min-width: 1280px) {
@@ -631,12 +635,13 @@ p {
   transform: rotate(-30deg);
   border-radius: 30px;
   border: 4px solid rgba(255, 255, 255, 0.15);
-  position: absolute;
+  position: fixed;
   box-shadow: 0 0 2px 0 rgba(232, 233, 235, 0.5),
     0 0 10px 0 rgba(179, 209, 241, 0.5), 0 0 20px 0 rgba(210, 225, 243, 0.5);
   animation: glow 1.5s infinite alternate;
 
   transform: translate(-50%, -50%);
+  z-index: -1;
 }
 @keyframes glow {
   from {
@@ -754,7 +759,7 @@ p {
   position: fixed;
   left: 0;
   top: 0;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0);
   z-index: -1;
 }
 
@@ -796,11 +801,17 @@ p {
 }
 /* next button */
 .favorite-container {
-  width: 540px;
+  width: 400px;
   margin: 0 auto;
   text-align: center;
   display: flex;
   align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .favorite-container {
+    width: 540px;
+  }
 }
 
 .favorite-wrapper {
