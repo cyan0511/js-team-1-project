@@ -102,7 +102,7 @@ export async function getWeather(...args) {
     // Weather Time
     void initializeWeatherTime(currentWeather);
     weatherInfoContainer.classList.remove('visually-hidden');
-    dateCardContainer.classList.remove('visually-hidden');
+    // dateCardContainer.classList.remove('visually-hidden');
     const weather = currentWeather.weather[0].main;
     let image = await searchImage(`${currentWeather.name}`);
     if (!image) {
@@ -121,7 +121,7 @@ export async function getWeather(...args) {
     void initializeWeatherChart(fiveDaysWeather);
   } catch (ex) {
     weatherInfoContainer.classList.add('visually-hidden');
-    dateCardContainer.classList.add('visually-hidden');
+    // dateCardContainer.classList.add('visually-hidden');
     Notify.failure('City not found.');
   } finally {
     hideLoader();
