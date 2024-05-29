@@ -1,17 +1,25 @@
-
-
 /* Fivedays CSS */
 
 .fivedays-moreinfo {
   margin-bottom: 15px;
-  /* display: flex; */
-  /* justify-content: center; */
-  width: 1060px;
-  /* height: 308px; */
-  padding: 40px 0px 5px 0px;
+  /* width: 1060px; desktop*/
+  width: 280px;
+  padding: 43px 0 43px 0;
   border-radius: 34px;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), rgba(16, 33, 54, 0.80);
   box-shadow: 0px 8px 43px 0px rgba(16, 33, 54, 0.60);
+}
+
+@media screen and (min-width: 768px) {
+  .fivedays-moreinfo {
+    width: 620px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .fivedays-moreinfo {
+    width: 1060px;
+  }
 }
 
 ul {
@@ -20,48 +28,126 @@ ul {
 
 .fivedays-container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+  .fivedays-container {
+    justify-content: center;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .fivedays-container {
+    justify-content: center;
+  }
 }
 
 .card-content {
   display: flex;
   flex-direction: row;
-  column-gap: 60px;
+  column-gap: 7px;
   align-items: center;
   padding: 0;
-  margin: 0;
+  margin-left: 10px;
 }
 
+@media screen and (min-width: 768px) {
+  .card-content {
+    column-gap: 20px;
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .card-content {
+    column-gap: 60px;
+  }
+}
+
+
 .card {
-  width: 120px;
-  height: 228px;
+  width: 82px;
+  height: 154px;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .card {
+    width: 100px;
+    height: 190px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .card {
+      width: 120px;
+      height: 228px;
+  }
 }
 
 .day {
   color: #FFF;
   text-align: center;
-  font-size: 18px;
+  font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.72px;
   opacity: 0.55;
 }
 
+@media screen and (min-width: 768px) {
+  .day {
+  font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .day {
+  font-size: 18px;
+  }
+}
+
 .fivedays-date {
   color: #FFF;
   text-align: center;
-  font-size: 25px;
+  font-size: 16px;
   font-weight: 400;
   letter-spacing: 1px;
 }
 
-.fivedays-icon {
-  margin: 20px 42px 35px 43px;
+@media screen and (min-width: 768px) {
+  .fivedays-date {
+    font-size: 18px;
+  }
+}
 
+@media screen and (min-width: 1280px) {
+  .fivedays-date {
+    font-size: 25px;
+  }
+}
+
+.fivedays-icon {
+  margin: 5px 8px 5px 9px;
+  width: 35px;
+  height: 35px;
+}
+
+@media screen and (min-width: 768px) {
+  .fivedays-icon {
+
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .fivedays-icon {
+    margin: 20px 42px 35px 43px;
+  }
 }
 
 .temp-info {
@@ -89,19 +175,48 @@ ul {
 .text-max {
   color: #FFF;
   text-align: center;
-  font-size: 18px;
+  font-size: 12px;
   font-weight: 400;
   opacity: 0.55;
+}
+
+@media screen and (min-width: 768px) {
+  .text-min,
+  .text-max {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .text-min,
+  .text-max {
+    font-size: 18px;
+  }
 }
 
 .num-min,
 .num-max {
   color: #FF6B09;
   text-align: center;
-  font-size: 25px;
+  font-size: 14px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 400;
   line-height: normal;
+}
+
+@media screen and (min-width: 768px) {
+  .num-min,
+  .num-max {
+    font-size: 18px;
+    font-weight: 700;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .num-min,
+  .num-max {
+    font-size: 25px;
+  }
 }
 
 .fiveday-more-info {
@@ -109,7 +224,7 @@ ul {
   justify-content: center;
   color: #FFF;
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700;
   text-decoration-line: underline;
   opacity: 0.3;
@@ -119,11 +234,11 @@ ul {
   outline: none;
 }
 
-/* .fiveday-more-info:hover,
-.fiveday-more-info:focus{
-color: #FFF;
-opacity: 1;
-} */
+@media screen and (min-width: 768px) {
+  .fiveday-more-info {
+    font-size: 14px;
+  }
+}
 
 .day:focus {
   color: #FF6B09;
@@ -135,26 +250,55 @@ opacity: 1;
 }
 
 /* More Info CSS */
+
 .more-info {
   transition: all 0.5s linear;
+  position: relative;
 }
 
 .more-info-list {
   display: flex;
   padding: 0;
-  column-gap: 10px;
-  justify-content: center;
+  column-gap: 12px;
+  justify-content: flex-start;
+  margin-left: 13px;
+}
+
+@media screen and (min-width: 768px) {
+  .more-info-list {
+    justify-content: flex-start;
+    margin-left: 15px;
+    margin-top: 39px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .more-info-list {
+    justify-content: center;
+    margin-left: 0px;
+  }
 }
 
 .more-info-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 120px;
   border-radius: 25px;
   border: 1px solid rgba(255, 255, 255, 0.20);
   row-gap: 10px;
-  padding: 16px 0;
+  padding: 15px 16px 18px 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .more-info-item {
+    padding: 15px 19px 18px 19px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .more-info-item {
+    padding: 15px 16px 18px 16px;
+  }
 }
 
 .time {
@@ -166,8 +310,20 @@ opacity: 1;
 
 .temperature {
   color: #FF6B09;
-  font-size: 25px;
+  font-size: 18px;
   font-weight: 700;
+}
+
+@media screen and (min-width: 768px) {
+  .temperature {
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .temperature {
+    font-size: 25px;
+  }
 }
 
 .measurement-list {
@@ -177,6 +333,13 @@ opacity: 1;
   align-items: flex-start;
   align-content: center;
   justify-content: center;
+  width: 88px;
+}
+
+@media screen and (min-width: 1280px) {
+  .measurement-list {
+    width: 100%;
+  }
 }
 
 .measurement-item{
@@ -188,9 +351,29 @@ opacity: 1;
 .barometer, .humidity, .wind {
   color: #FFF;
   opacity: 0.54;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 400;
 }
+
+@media screen and (min-width: 768px) {
+  .barometer,
+    .humidity,
+    .wind {
+    width: 48px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .barometer,
+  .humidity,
+  .wind {
+    width: 55px;
+    font-size: 14px;
+  }
+}
+
+
 
 .card-content .active .day {
   color: #ff6b09;;
@@ -218,4 +401,54 @@ opacity: 1;
   line-height: normal;
   letter-spacing: 1.12px;
   margin-bottom: 22px;
+}
+
+/* 2nd Page */
+
+.five-day-view .buttons-toggle {
+    justify-content: space-evenly;
+    padding: 0 12px;
+    margin-top: 65px;
+    margin-bottom: 30px;
+}
+
+@media screen and (min-width: 768px) {
+  .five-day-view .buttons-toggle {
+    justify-content: center;
+      margin-top: 45px;
+      margin-bottom: 20px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .five-day-view .buttons-toggle {
+    justify-content: flex-end;
+    width: 1060px;
+  }
+}
+
+.nextBtn-moreInfo {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .nextBtn-moreInfo {
+    display: flex;
+    justify-content: end;
+    cursor: pointer;
+    position: absolute;
+    right: 5%;
+    border-radius: 50%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .nextBtn-moreInfo {
+    display: none;
+  }
+}
+
+
+.more-info-container, .weather-wrap {
+  overflow: hidden;
 }
