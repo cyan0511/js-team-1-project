@@ -21,6 +21,7 @@ body {
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center;
+  overflow-x: hidden;
 }
 
 input:hover {
@@ -320,7 +321,7 @@ p {
 }
 
 #search-input {
-  width: 506px;
+  width: 280px;
   height: 48px;
   font-size: 20px;
   border-radius: 27px;
@@ -335,6 +336,18 @@ p {
   color: #000;
   font-size: 14px;
   font-weight: 400;
+}
+
+@media screen and (min-width: 768px) {
+  #search-input {
+    width: 440px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  #search-input {
+    width: 520px;
+  }
 }
 
 .input-geolocation {
@@ -407,7 +420,7 @@ p {
 }
 
 .five-day-view .buttons-toggle {
-  width: 70vw;
+  /* width: 70vw; */
   justify-content: end;
   margin: 40px 0 40px 0;
 }
@@ -488,20 +501,36 @@ p {
 }
 /* next button */
 .favorite-container {
-  width: 540px;
+  width: 350px;
   margin: 0 auto;
   text-align: center;
   display: flex;
   align-items: center;
 }
 
+@media screen and (min-width: 768px) {
+.favorite-container {
+    width: 500px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .favorite-container {
+    width: 578px;
+    font-size: 14px;
+  }
+}
+
 .favorite-wrapper {
   overflow: hidden;
 }
+
 .favorite-city-list {
   display: flex;
   transition: transform 0.3s ease-in-out;
   gap: 10px;
+  padding: 0;
 }
 
 .favorite-city-list li {
