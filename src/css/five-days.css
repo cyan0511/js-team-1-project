@@ -140,7 +140,7 @@ ul {
 
 @media screen and (min-width: 768px) {
   .fivedays-icon {
-    margin: 20px 42px 35px 43px; 
+    margin: 20px 42px 35px 43px;
   }
 }
 
@@ -446,4 +446,9 @@ ul {
   .nextBtn-moreInfo {
     display: none;
   }
+}
+
+
+.more-info-container, .weather-wrap {
+  overflow: hidden;
 }
