@@ -146,6 +146,13 @@ export async function initializeWeatherChart(data) {
             },
           },
         },
+        animations: {
+          radius: {
+            duration: 400,
+            easing: 'linear',
+            loop: (context) => context.active
+          }
+        },
       },
     });
   } catch (error) {

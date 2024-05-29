@@ -66,6 +66,7 @@ export function addToFavorite() {
 }
 
 export function updateCityList(){
+    nextBtn.classList.add('visually-hidden');
     const favoriteCityList = document.querySelector('.favorite-city-list');
     const storedCities = JSON.parse(localStorage.getItem('city')) || [];
     favoriteCityList.innerHTML = '';
@@ -91,6 +92,10 @@ export function updateCityList(){
             search(cityElement.innerText)
         });
     });
+
+    if (favoriteListItems.length > 4) {
+      nextBtn.classList.remove('visually-hidden');
+    }
 }
 
 function search(city) {
