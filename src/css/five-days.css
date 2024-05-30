@@ -29,7 +29,7 @@ ul {
 .fivedays-container {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  flex-direction: column;
 }
 
 @media screen and (min-width: 768px) {
@@ -49,7 +49,7 @@ ul {
   display: flex;
   flex-direction: row;
   column-gap: 7px;
-  align-items: center;
+  align-items: flex-start;
   padding: 0;
   margin-left: 10px;
 }
@@ -136,12 +136,6 @@ ul {
   margin: 5px 8px 5px 9px;
   width: 35px;
   height: 35px;
-}
-
-@media screen and (min-width: 768px) {
-  .fivedays-icon {
-
-  }
 }
 
 @media screen and (min-width: 1280px) {
@@ -359,8 +353,8 @@ ul {
   .barometer,
     .humidity,
     .wind {
-    width: 48px;
-    font-size: 14px;
+    width: 55px;
+    font-size: 13px;
   }
 }
 
@@ -368,8 +362,8 @@ ul {
   .barometer,
   .humidity,
   .wind {
-    width: 55px;
-    font-size: 14px;
+    width: 56px;
+    font-size: 13px;
   }
 }
 
@@ -384,7 +378,7 @@ ul {
   color: #ff6b09;;
   background-color: #767d8530;
   border-radius: 10px;
-  padding: 15px 0px 15px 0px;
+  /* padding: 15px 0px 15px 0px; */
 }
 
 .card.active .fiveday-more-info {
@@ -403,12 +397,14 @@ ul {
   margin-bottom: 22px;
 }
 
+.scroll-ba
+
 /* 2nd Page */
 
 .five-day-view .buttons-toggle {
     justify-content: space-evenly;
     padding: 0 12px;
-    margin-top: 65px;
+    margin-top: -55px;
     margin-bottom: 30px;
 }
 
@@ -427,7 +423,7 @@ ul {
   }
 }
 
-.nextBtn-moreInfo {
+/* .nextBtn-moreInfo {
   display: none;
 }
 
@@ -446,9 +442,38 @@ ul {
   .nextBtn-moreInfo {
     display: none;
   }
+} */
+
+
+/* .more-info-container, .weather-wrap {
+  overflow: hidden;
+} */
+
+/* btns */
+
+
+
+.btnWrapper {
+  display: flex;
+  justify-content: center;
 }
 
+.prev-nextBtn {
+  display: flex;
+  justify-content: space-between;
+  width: 60px;
+  align-items: center;
+}
 
-.more-info-container, .weather-wrap {
-  overflow: hidden;
+#prev-btn, #next-btn {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  color: var(--white);
+  font-size: 25px;
+
 }

@@ -11,6 +11,7 @@
   --lato: 'Lato', sans-serif;
 }
 
+
 body {
   font-family: var(--lato);
   background-color: #f0f0f0;
@@ -21,7 +22,8 @@ body {
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center;
-  overflow-x: hidden;
+  scrollbar-width: thin;
+  /* overflow-x: hidden; */
 }
 
 input:hover {
@@ -700,7 +702,8 @@ p {
 .five-day-view .buttons-toggle {
   /* width: 70vw; */
   justify-content: end;
-  margin: 40px 0 40px 0;
+  margin-top: -55px;
+  margin-bottom: 30px;
 }
 
 .visually-hidden {
@@ -713,7 +716,7 @@ p {
   white-space: nowrap;
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
-  overflow: hidden;
+  /* overflow: hidden; */
   transition: opacity 1.5s ease, transform 1.5s ease;
   opacity: 0;
   display: none;
@@ -865,3 +868,528 @@ p {
   cursor: pointer;
   margin-left: 20px;
 }
+
+
+
+/* 2nd Page CSS */
+
+/* Fivedays CSS */
+
+.fivedays-moreinfo {
+  margin-bottom: 15px;
+  /* width: 1060px; desktop*/
+  width: 280px;
+  padding: 43px 0 43px 0;
+  border-radius: 34px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), rgba(16, 33, 54, 0.80);
+  box-shadow: 0px 8px 43px 0px rgba(16, 33, 54, 0.60);
+}
+
+@media screen and (min-width: 768px) {
+  .fivedays-moreinfo {
+    width: 620px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .fivedays-moreinfo {
+    width: 1060px;
+  }
+}
+
+ul {
+  list-style-type: none;
+}
+
+.fivedays-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 768px) {
+  .fivedays-container {
+    justify-content: center;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .fivedays-container {
+    justify-content: center;
+  }
+}
+
+
+.card-content {
+  display: flex;
+  flex-direction: row;
+  column-gap: 7px;
+  align-items: flex-start;
+  padding: 0;
+  margin-left: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .card-content {
+    column-gap: 20px;
+    justify-content: center;
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .card-content {
+    column-gap: 60px;
+    justify-content: center;
+  }
+}
+
+
+.card {
+  width: 82px;
+  height: 154px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .card {
+    width: 100px;
+    height: 190px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .card {
+    width: 120px;
+    height: 228px;
+  }
+}
+
+.day {
+  color: #FFF;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.72px;
+  opacity: 0.55;
+}
+
+@media screen and (min-width: 768px) {
+  .day {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .day {
+    font-size: 18px;
+  }
+}
+
+.fivedays-date {
+  color: #FFF;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+@media screen and (min-width: 768px) {
+  .fivedays-date {
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .fivedays-date {
+    font-size: 25px;
+  }
+}
+
+.fivedays-icon {
+  margin: 5px 8px 5px 9px;
+  width: 35px;
+  height: 35px;
+}
+
+@media screen and (min-width: 1280px) {
+  .fivedays-icon {
+    margin: 20px 42px 35px 43px;
+  }
+}
+
+.temp-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+.separator {
+  display: flex;
+  border-right: 1px solid #fff;
+  height: 46px;
+  opacity: 0.3;
+}
+
+.text-min,
+.text-max {
+  color: #FFF;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 400;
+  opacity: 0.55;
+}
+
+@media screen and (min-width: 768px) {
+
+  .text-min,
+  .text-max {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+
+  .text-min,
+  .text-max {
+    font-size: 18px;
+  }
+}
+
+.num-min,
+.num-max {
+  color: #FF6B09;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+@media screen and (min-width: 768px) {
+
+  .num-min,
+  .num-max {
+    font-size: 18px;
+    font-weight: 700;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+
+  .num-min,
+  .num-max {
+    font-size: 25px;
+  }
+}
+
+.fiveday-more-info {
+  display: flex;
+  justify-content: center;
+  color: #FFF;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration-line: underline;
+  opacity: 0.3;
+  background-color: initial;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+@media screen and (min-width: 768px) {
+  .fiveday-more-info {
+    font-size: 14px;
+  }
+}
+
+.day:focus {
+  color: #FF6B09;
+  opacity: 1;
+}
+
+.card:focus {
+  color: red;
+}
+
+/* More Info CSS */
+
+.more-info {
+  transition: all 0.5s linear;
+  position: relative;
+}
+
+.more-info-list {
+  display: flex;
+  padding: 0;
+  column-gap: 12px;
+  justify-content: flex-start;
+  margin-left: 13px;
+}
+
+@media screen and (min-width: 768px) {
+  .more-info-list {
+    justify-content: flex-start;
+    margin-left: 15px;
+    margin-top: 39px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .more-info-list {
+    justify-content: center;
+    margin-left: 0px;
+  }
+}
+
+.more-info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  row-gap: 10px;
+  padding: 15px 16px 18px 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .more-info-item {
+    padding: 15px 19px 18px 19px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .more-info-item {
+    padding: 15px 16px 18px 16px;
+  }
+}
+
+.time {
+  color: #FFF;
+  font-size: 14px;
+  font-weight: 400;
+  opacity: 0.54;
+}
+
+.temperature {
+  color: #FF6B09;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+@media screen and (min-width: 768px) {
+  .temperature {
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .temperature {
+    font-size: 25px;
+  }
+}
+
+.measurement-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  align-items: flex-start;
+  align-content: center;
+  justify-content: center;
+  width: 88px;
+}
+
+@media screen and (min-width: 1280px) {
+  .measurement-list {
+    width: 100%;
+  }
+}
+
+.measurement-item {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.barometer,
+.humidity,
+.wind {
+  color: #FFF;
+  opacity: 0.54;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+@media screen and (min-width: 768px) {
+
+  .barometer,
+  .humidity,
+  .wind {
+    width: 55px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+
+  .barometer,
+  .humidity,
+  .wind {
+    width: 56px;
+    font-size: 14px;
+  }
+}
+
+
+
+.card-content .active .day {
+  color: #ff6b09;
+  ;
+  opacity: 1;
+}
+
+.card-content .active {
+  color: #ff6b09;
+  ;
+  background-color: #767d8530;
+  border-radius: 10px;
+  /* padding: 15px 0px 15px 0px; */
+}
+
+.card.active .fiveday-more-info {
+  color: var(--white);
+  opacity: 1;
+}
+
+.city-fiveday-view {
+  color: var(--white);
+  text-align: center;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1.12px;
+  margin-bottom: 22px;
+}
+
+/* 2nd Page */
+
+.weather-wrap {
+  overflow: hidden;
+}
+
+.five-day-view .buttons-toggle {
+  justify-content: space-evenly;
+  padding: 0 12px;
+  margin-top: 65px;
+  margin-bottom: 30px;
+}
+
+@media screen and (min-width: 768px) {
+  .five-day-view .buttons-toggle {
+    justify-content: center;
+    margin-top: 45px;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .five-day-view .buttons-toggle {
+    justify-content: flex-end;
+    width: 1060px;
+  }
+}
+
+.nextBtn-moreInfo {
+  display: none;
+  position: relative;
+}
+
+@media screen and (min-width: 768px) {
+  .nextBtn-moreInfo {
+    display: flex;
+    justify-content: end;
+    cursor: pointer;
+    position: absolute;
+    right: 5%;
+    border-radius: 50%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .nextBtn-moreInfo {
+    display: none;
+  }
+}
+
+
+.more-info-container {
+  overflow-x: scroll;
+}
+
+@media screen and (min-width: 768px) {
+.more-info-container {
+    overflow: hidden;
+  }
+}
+
+::-webkit-scrollbar-track {
+  background: #fff;
+  opacity: 0.3;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FF6B09;
+}
+
+/* btns */
+
+.btnWrapper {
+  display: flex;
+}
+
+.prev-nextBtn {
+  display: flex;
+  justify-content: space-between;
+  width: 60px;
+  align-items: center;
+}
+
+#prev-btn,
+#next-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: inherit;
+  color: var(--white);
+  font-size: 25px;
+  opacity: 0.3;
+}
+
+@media screen and (min-width: 768px) {
+  #prev-btn,
+    #next-btn {
+      display: none;
+  }
+}
+
+
+#prev-btn:hover,
+#next-btn:hover {
+opacity: 1;
+}
+

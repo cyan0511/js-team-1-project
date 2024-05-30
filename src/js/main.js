@@ -158,3 +158,4 @@ window.makeSnow = () => {
   startAnimation({ weather: [{ main: 'Snow' }] });
 };
 
+//Previous and Next Mobile Button
