@@ -1359,6 +1359,7 @@ ul {
 
 .btnWrapper {
   display: flex;
+  justify-content: center;
 }
 
 .prev-nextBtn {

@@ -16,7 +16,7 @@ import { searchGoogleImage } from './google-places-image-api';
 
 import 'aos/dist/aos.css';
 import '../css/more-info.css';
-import '../css/five-days.css';
+// import '../css/five-days.css';
 
 // Initialize Page
 document.addEventListener('DOMContentLoaded', async () => {
