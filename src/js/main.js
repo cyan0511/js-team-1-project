@@ -47,10 +47,8 @@ const elTodayView = document.querySelector('.today-view');
 const elFiveDayView = document.querySelector('.five-day-view');
 
 const weatherInfoContainer = document.querySelector('.weather-info-container');
-const dateCardContainer = document.querySelector('.date-card-container');
 const searchForm = document.getElementById('search-form');
 const loaderContainer = document.querySelector('.loader-container');
-const cityElement = document.querySelector('.city');
 const favoriteBtn = document.querySelector('.btn-favourite');
 
 favoriteBtn.addEventListener('click',()=> addToFavorite());

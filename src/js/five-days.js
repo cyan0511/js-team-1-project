@@ -162,7 +162,7 @@ function renderMoreInfo(key, list) {
 
   li.classList.add('active');
 
-  const div = `<div class='more-info-container' data-aos='fade-down' data-aos-delay='100' data-aos-duration='600'>
+  const divMoreInfo = `<div class='more-info-container' data-aos='fade-down' data-aos-delay='100' data-aos-duration='600'>
       <ul class='more-info-list'>
         ${Array.from(
     list.map(
@@ -205,7 +205,7 @@ function renderMoreInfo(key, list) {
             </ul>
             <button class='nextBtn-moreInfo nextBtn round'></button>
             </div>`;
-  moreInfoDataElement.innerHTML = div;
+  moreInfoDataElement.innerHTML = divMoreInfo;
 
   const moreInfoElement = document.querySelector('.nextBtn-moreInfo');
   const moreInfoList = document.querySelector('.more-info-container .more-info-list');
