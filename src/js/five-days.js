@@ -2,8 +2,32 @@ import moment from 'moment/moment';
 import { WEATHER_ICON_ENDPOINT } from './api';
 import { startAnimation, stopAnimation } from './animation';
 
-const searchInputEl = document.getElementById('search-input');
-const searchFormEl = document.getElementById('search-form');
+const nextBtn = document.getElementById('next-btn');
+const prevBtn = document.getElementById('prev-btn');
+
+let contentX = 0;
+
+export function initFiveDayViewButtons() {
+  nextBtn.addEventListener('click', () => {
+    const cardContent = document.querySelector('.weather-wrap .card-content');
+    if (contentX <= 70) {
+      contentX += 20;
+    }
+    cardContent.style.transform = `translateX(-${contentX}%)`;
+    cardContent.style.transition = 'transform 0.3s ease';
+  });
+
+  prevBtn.addEventListener('click', () => {
+    const cardContent = document.querySelector('.weather-wrap .card-content');
+    if (contentX >= 0) {
+      contentX -= 20;
+    }
+    cardContent.style.transform = `translateX(-${contentX}%)`;
+    cardContent.style.transition = 'transform 0.3s ease';
+  });
+
+}
+
 
 // Get the weather of the day with the most occurrences by comparing the weather icons
 function getWeatherMode(weatherArray) {
@@ -138,46 +162,69 @@ function renderMoreInfo(key, list) {
 
   li.classList.add('active');
 
-  const ul = `<div class="more-info-container" data-aos="fade-down" data-aos-delay="100" data-aos-duration="600">
-      <ul class="more-info-list">
+  const divMoreInfo = `<div class='more-info-container' data-aos='fade-down' data-aos-delay='100' data-aos-duration='600'>
+      <ul class='more-info-list'>
         ${Array.from(
-          list.map(
-            item =>
-              `<li class="more-info-item">
-                <h3 class="time">${moment(item.dt_txt).format('HH:mm')}</h3>
-                <img src="${WEATHER_ICON_ENDPOINT}/img/wn/${
-                item.weather[0].icon
-              }.png" alt="" class="icon">
-                <h2 class="temperature">${Math.floor(item.main.temp)}°</h2>
-                    <ul class="measurement-list">
-                      <li class="measurement-item">
-                        <span class="icon">
-                          <svg width="20" height="20">
-                            <use href="/icons.adfc4680.svg#barometer"></use>
+    list.map(
+      item =>
+        `<li class='more-info-item'>
+                <h3 class='time'>${moment(item.dt_txt).format('HH:mm')}</h3>
+                <img src='${WEATHER_ICON_ENDPOINT}/img/wn/${
+          item.weather[0].icon
+        }.png' alt='' class='icon'>
+                <h2 class='temperature'>${Math.floor(item.main.temp)}°</h2>
+                    <ul class='measurement-list'>
+                      <li class='measurement-item'>
+                        <span class='icon'>
+                          <svg width='20' height='20'>
+                            <use href='/icons.adfc4680.svg#barometer'></use>
                           </svg>
                         </span>
-                        <span class="barometer">${item.main.pressure} mm</span>
+                        <span class='barometer'>${item.main.pressure} mm</span>
                       </li>
-                      <li class="measurement-item">
-                        <span class="icon">
-                          <svg width="20" height="20">
-                            <use href="/icons.adfc4680.svg#humidity"></use>
+                      <li class='measurement-item'>
+                        <span class='icon'>
+                          <svg width='20' height='20'>
+                            <use href='/icons.adfc4680.svg#humidity'></use>
                           </svg>
                         </span>
-                        <span class="humidity">${item.main.humidity}%</span>
+                        <span class='humidity'>${item.main.humidity}%</span>
                       </li>
-                      <li class="measurement-item">
-                        <span class="icon">
-                          <svg width="20" height="20">
-                            <use href="/icons.adfc4680.svg#wind"></use>
+                      <li class='measurement-item'>
+                        <span class='icon'>
+                          <svg width='20' height='20'>
+                            <use href='/icons.adfc4680.svg#wind'></use>
                           </svg>
                         </span>
-                        <span class="wind">${item.wind.speed} m/s</span>
+                        <span class='wind'>${item.wind.speed} m/s</span>
                       </li>
                     </ul>
               </li>`
-          )
-        ).join('')}
-            </ul></div>`;
-  moreInfoDataElement.innerHTML = ul;
+    )
+  ).join('')}
+            </ul>
+            <button class='nextBtn-moreInfo nextBtn round'></button>
+            </div>`;
+  moreInfoDataElement.innerHTML = divMoreInfo;
+
+  const moreInfoElement = document.querySelector('.nextBtn-moreInfo');
+  const moreInfoList = document.querySelector('.more-info-container .more-info-list');
+
+  moreInfoElement.addEventListener('click', () => {
+
+    moreInfoX += 20;
+
+    if (moreInfoX >= (moreInfoList.children.length * 100 / 5)) {
+      moreInfoX = 0;
+    }
+
+    moreInfoList.style.transform = `translateX(-${moreInfoX}%)`;
+    moreInfoList.style.transition = 'transform 0.3s ease';
+  })
+
+
+
 }
+
+let moreInfoX = 0;
+

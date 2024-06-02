@@ -11,12 +11,12 @@ import { initializeWeatherTime } from './weather-time.js';
 import { startAnimation, stopAnimation } from './animation';
 import { setupToggleChart } from './hide-show';
 import { addToFavorite, updateCityList } from './favorites-cities';
-import { renderFiveDaysData } from './five-days';
+import { initFiveDayViewButtons, renderFiveDaysData } from './five-days';
 import { searchGoogleImage } from './google-places-image-api';
 
 import 'aos/dist/aos.css';
 import '../css/more-info.css';
-import '../css/five-days.css';
+// import '../css/five-days.css';
 
 // Initialize Page
 document.addEventListener('DOMContentLoaded', async () => {
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   initializeQuoteSlider();
   setupToggleChart();
   updateCityList();
-
+  initFiveDayViewButtons();
   try {
     // Current Location
     const {
@@ -47,10 +47,8 @@ const elTodayView = document.querySelector('.today-view');
 const elFiveDayView = document.querySelector('.five-day-view');
 
 const weatherInfoContainer = document.querySelector('.weather-info-container');
-const dateCardContainer = document.querySelector('.date-card-container');
 const searchForm = document.getElementById('search-form');
 const loaderContainer = document.querySelector('.loader-container');
-const cityElement = document.querySelector('.city');
 const favoriteBtn = document.querySelector('.btn-favourite');
 
 favoriteBtn.addEventListener('click',()=> addToFavorite());
@@ -158,3 +156,4 @@ window.makeSnow = () => {
   startAnimation({ weather: [{ main: 'Snow' }] });
 };
 
+//Previous and Next Mobile Button
