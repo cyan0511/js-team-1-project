@@ -928,6 +928,7 @@ ul {
   align-items: flex-start;
   padding: 0;
   margin-left: 10px;
+  transform: translateX(0%);
 }
 
 @media screen and (min-width: 768px) {
@@ -935,6 +936,7 @@ ul {
     column-gap: 20px;
     justify-content: center;
     margin: 0;
+    transform: translateX(0%);
   }
 }
 
@@ -942,6 +944,7 @@ ul {
   .card-content {
     column-gap: 60px;
     justify-content: center;
+    transform: translateX(0%);
   }
 }
 
@@ -1343,6 +1346,7 @@ ul {
 @media screen and (min-width: 768px) {
 .more-info-container {
     overflow: hidden;
+   padding-bottom: 33px;
   }
 }
 
@@ -1359,6 +1363,7 @@ ul {
 
 .btnWrapper {
   display: flex;
+  justify-content: center;
 }
 
 .prev-nextBtn {
@@ -1393,3 +1398,26 @@ ul {
 opacity: 1;
 }
 
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--orange);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--orange);
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-corner {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--yellow);
+}

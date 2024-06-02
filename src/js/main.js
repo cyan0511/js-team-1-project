@@ -11,12 +11,12 @@ import { initializeWeatherTime } from './weather-time.js';
 import { startAnimation, stopAnimation } from './animation';
 import { setupToggleChart } from './hide-show';
 import { addToFavorite, updateCityList } from './favorites-cities';
-import { renderFiveDaysData } from './five-days';
+import { initFiveDayViewButtons, renderFiveDaysData } from './five-days';
 import { searchGoogleImage } from './google-places-image-api';
 
 import 'aos/dist/aos.css';
 import '../css/more-info.css';
-import '../css/five-days.css';
+// import '../css/five-days.css';
 
 // Initialize Page
 document.addEventListener('DOMContentLoaded', async () => {
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   initializeQuoteSlider();
   setupToggleChart();
   updateCityList();
-
+  initFiveDayViewButtons();
   try {
     // Current Location
     const {
